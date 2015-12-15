@@ -1,3 +1,38 @@
 <div class = "container">
-  <h1>Swing Out!</h1>
+  <div class="row">
+      <h1>Swing Out!</h1>
+    <br>
+    <%unless current_user%>
+      <%=link_to "Sign Up!", new_user_path%> |
+      <%=link_to "Login", new_session_path%>
+    <%end%>
+    <br>
+    <%if current_user%>
+      <%=link_to "Log Out", session_path(@current_user), method: :delete%> |
+      <%=link_to "Create an Event", new_event_path%>
+    <%end%>
+  </div>
+  <br>
+  <div class="row">
+    <%@events.each do |e|%>
+    <div class="col-xs-3", id="event-tabs">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><%=e.name%></h4>
+        </div>
+        <div class = "panel-body">
+        <%=e.location%><br>
+        $<%=e.price%>
+        <h4 style="float:right;"><%=e.date%>
+          <%if e.user_id == current_user%>
+            <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
+            <%else%>
+            <%end%></h4>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+
+
 </div>
