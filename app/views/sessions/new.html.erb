@@ -8,8 +8,10 @@
       <div class="field">
         <%= f.password_field :password, placeholder: "password"%>
       </div>
-      <br>
-      <%= f.submit%>
+      <%= f.submit "Sign In!", class:"btn btn-primary btn-md"%>
     <%end%>
+    <br>
+    New to Swing Out?
+    <%=button_to "Sign up now!", new_user_path, class: "btn btn-default btn-sm"%>
   </div>
 </div>
