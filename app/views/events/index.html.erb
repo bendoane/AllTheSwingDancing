@@ -23,7 +23,7 @@
         <div class = "panel-body">
         <%=e.location%><br>
         $<%=e.price%>
-        <h4 style="float:right;"><%=e.date%>
+        <h4 style="float:right;"><%=e.date.strftime("%d %b")%>
           <%if e.user_id == current_user%>
             <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
             <%else%>
