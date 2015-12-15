@@ -18,11 +18,32 @@
     <div class="field">
       <%=f.text_field :price, placeholder: "$ Dollars"%>
     </div>
+
+    <!--Still working out the kinks here -->
     <div class="field">
-      <%=f.text_field :event_type, placeholder: "Exchange, Workshop, Dance, etc."%>
+      <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"]%>
     </div>
+      <div class="radio-inline">
+        <input type="radio" name="optradio">Workshop
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="optradio">Exchange
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="optradio">Evening Dance
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="optradio">Dance Camp
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="optradio">Special Event
+      </div>
+      <!--  -->
+
+      <br>
+      <br>
     <div class="field">
-      <%=f.text_field :dance_style, placeholder: "Lindy, Charleston, Shag, Blues, etc."%>
+      <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa"]%>
     </div>
     <div class="actions">
       <%= f.submit "Add Event", class: "btn btn-standard btn-md"%>
