@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def index
     @user = current_user
-    @events = Event.all
+    @events = Event.all.order("date DESC")
   end
 
   def new
@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event=Event.find(params[:id])
   end
 
   def update
