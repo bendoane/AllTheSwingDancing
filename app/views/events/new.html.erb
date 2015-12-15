@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Add an event!</h1>
+
+  <%=bootstrap_form_for(@event) do |f|%>
+    <div class="col-xs-8">
+    <div class="field">
+      <%=f.text_field :name, placeholder:"Event Name"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :organizer, placeholder: "Group Sponsor"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :location, placeholder: "Where's this at?"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :date, placeholder: "dd/mm/yyyy"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :price, placeholder: "$ Dollars"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :event_type, placeholder: "Exchange, Workshop, Dance, etc."%>
+    </div>
+    <div class="field">
+      <%=f.text_field :dance_style, placeholder: "Lindy, Charleston, Shag, Blues, etc."%>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add Event", class: "btn btn-standard btn-md"%>
+    </div>
+    <%end%>
+    <br>
+  </div>
