@@ -1,5 +1,13 @@
 <div class = "container">
   <div class="row">
     <h1><%=@event.name%></h1>
-    <line><h5>Price: <%=number_to_currency(@event.price)%>  |  Location: <%=@event.location%></h5></line>
+    <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
+    <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.location%></h5>
+    Host Organization: <%=@event.organizer%><br>
+    Event Type: <%=@event.event_type%><br>
+    Dance Style: <%=@event.dance_style%><br>
+
+
+
+  </div>
 </div>

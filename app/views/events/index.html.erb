@@ -1,16 +1,6 @@
 <div class = "container">
   <div class="row">
-      <h1>Swing Out!</h1>
-    <br>
-    <%unless current_user%>
-      <%=link_to "Sign Up!", new_user_path%> |
-      <%=link_to "Login", new_session_path%>
-    <%end%>
-    <br>
-    <%if current_user%>
-      <%=link_to "Log Out", session_path(@current_user), method: :delete%> |
-      <%=link_to "Create an Event", new_event_path%>
-    <%end%>
+      <h1>Get ready to Swing Out!</h1>
   </div>
   <br>
   <div class="row">
@@ -22,7 +12,7 @@
         </div>
         <div class = "panel-body">
         <%=e.location%><br>
-        $<%=e.price%>
+        <%=number_to_currency(e.price)%>
         <h4 style="float:right;"><%=e.date.strftime("%d %b")%>
           <%if e.user_id == current_user%>
             <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
@@ -33,6 +23,5 @@
       </div>
     <%end%>
   </div>
-
 
 </div>
