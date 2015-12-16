@@ -1,3 +1,13 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1667925190116529";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div class = "container">
   <div class="row">
     <h1><%=@event.name%></h1>
@@ -6,7 +16,17 @@
     Host Organization: <%=@event.organizer%><br>
     Event Type: <%=@event.event_type%><br>
     Dance Style: <%=@event.dance_style%><br>
-
+    <br>
+    <!--FACEBOOK 'LIKE' BUTTON -->
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
+    <!--  -->
+    <br>
+    <div class="fb-comments" data-href="https://www.facebook.com/events/349701035238052/" data-numposts="5"></div>
 
 
   </div>

@@ -13,14 +13,23 @@
         <div class = "panel-body">
         <%=e.location%><br>
         <%=number_to_currency(e.price)%>
+
         <h4 style="float:right;"><%=e.date.strftime("%d %b")%>
-          <%if e.user_id == current_user%>
+          <%if e.user == current_user%>
             <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
             <%else%>
-            <%end%></h4>
+            <%end%>
+            <br>
+            <br>
+            <!--FACEBOOK 'LIKE' BUTTON -->
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+            <!--  -->
+          </h4>
+
           </div>
         </div>
       </div>
+
     <%end%>
   </div>
 
