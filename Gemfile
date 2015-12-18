@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 gem 'authlogic'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap_form'
+gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

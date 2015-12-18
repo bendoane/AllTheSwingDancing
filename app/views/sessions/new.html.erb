@@ -1,27 +1,3 @@
-<!--Facebook login SDK info  -->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1667925190116529',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<!--  -->
-
-
-
-
-
 <div class="container">
   <h1>Sign in!</h1>
   <div class="col-xs-6">
@@ -38,4 +14,19 @@
     New to Swing Out?
     <%=button_to "Sign up now!", new_user_path, class: "btn btn-default btn-sm"%>
   </div>
+
+  <!--Omni stuff-->
+  <div class="social_network_authorize">
+  <h4>Or Sign in using...</h4>
+   <% ["twitter","facebook", "linkedin","open_id"].each do |provider| %>
+      <% if provider !="open_id" %>
+        <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}" %>
+      <% else %>
+        <%= link_to image_tag("auth/#{provider}_32.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id" %>
+      <% end %>
+   <% end %>
+  </div>
+    <!--END-->
+
+
 </div>
