@@ -1,5 +1,5 @@
 class AuthorizationsController < ApplicationController
-  before_filter :require_user, : only => [:destroy]
+  before_filter :require_user, :only => [:destroy]
 
   def create
     omniauth = request.env['omniauth.auth'] #this is where you get all the data from your provider through omniauth
@@ -9,13 +9,13 @@ class AuthorizationsController < ApplicationController
       current_user.authorizations.create(:provider => omniauth['provider'], :uid => omniauth['uid']) #Add an auth to existing user
       redirect_to edit_user_path(:current)
     elsif @auth
-      flash[:notice] = "Welcome back #{omniauth['provider']} user"
-      UserSession.create(@auth.user, true) #User is present. Login the user with his social account
+      flash[:notice] = "You've logged in via #{omniauth['provider']}. Welcome, #{@auth.user.first_name}!"
+      Session.create(@auth.user, true) #User is present. Login the user with his social account
       redirect_to root_url
     else
       @new_auth = Authorization.create_from_omniauth_data(omniauth, current_user) #Create a new user
       flash[:notice] = "Welcome #{omniauth['provider']} user. Your account has been created."
-      UserSession.create(@new_auth.user, true) #Log the authorizing user in.
+      Session.create(@new_auth.user, true) #Log the authorizing user in.
       redirect_to root_url
     end
   end

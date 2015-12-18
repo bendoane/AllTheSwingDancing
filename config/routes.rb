@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :events
+  resources :authorizations
+  match '/auth/:provider/callback' => 'authorizations#create',via: [:get, :post]
+  match '/auth/failure' => 'authorizations#failure', via: [:get, :post]
+  match '/auth/:provider' => 'authorizations#blank', via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
   root 'events#index'
   post 'users/new' => "users#new"
   get 'info/about' =>"info#about"
+  get 'info/contact' =>"info#contact"
 
 
   # Example of regular route:
