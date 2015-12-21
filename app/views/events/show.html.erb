@@ -34,8 +34,18 @@
     <hr>
     <h3>Other Events Nearby</h3>
     <ul>
-    <%@event.location.nearbys(225).each do |loc|%>
-        <li><%= link_to loc.event.name, loc.event %> (<%= loc.distance.round(0) %> miles)</li>
+    <%@event.location.nearbys(200).each do |loc|%>
+      <div class="col-xs-3", id="event-tabs">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4><%= link_to truncate(loc.event.name, :length=>30), loc.event %></h4>
+          </div>
+          <div class="panel-body">
+            <%= loc.distance.round(0) %> miles away<br>
+            in <%=loc.event.address%>
+          </div>
+        </div>
+      </div>
       <%end%>
     </ul>
       <!--END-->
