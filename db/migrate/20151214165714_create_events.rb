@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :organizer
       t.date :date
       t.time :time
-      t.string :location
+      t.string :address
       t.decimal :price, :precision => 8, :scale => 2
       t.string :event_type
       t.string :dance_style

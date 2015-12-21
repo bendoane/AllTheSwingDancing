@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :events
   resources :authorizations
+  resources :locations
   match '/auth/:provider/callback' => 'authorizations#create',via: [:get, :post]
   match '/auth/failure' => 'authorizations#failure', via: [:get, :post]
   match '/auth/:provider' => 'authorizations#blank', via: [:get, :post]
@@ -11,9 +12,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'events#index'
+
   post 'users/new' => "users#new"
   get 'info/about' =>"info#about"
   get 'info/contact' =>"info#contact"
+  get 'locations/index'
 
 
   # Example of regular route:

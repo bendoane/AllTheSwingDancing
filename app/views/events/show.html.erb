@@ -12,7 +12,7 @@
   <div class="row">
     <h1><%=@event.name%></h1>
     <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
-    <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.location%></h5>
+    <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
     Host Organization: <%=@event.organizer%><br>
     Event Type: <%=@event.event_type%><br>
     Dance Style: <%=@event.dance_style%><br>
@@ -28,6 +28,15 @@
     <br>
     <div class="fb-comments" data-href="https://www.facebook.com/events/349701035238052/" data-numposts="5"></div>
 
+    <!--GEOCODING LOCATION-->
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.location.latitude}%2C#{@event.location.longitude}" %>
+    <h3>Nearby locations</h3>
+    <ul>
+    <% for location in @event.location.nearbys(10) %>
+      <li><%= link_to location.address, location %> (<%= location.distance.round(5) %> miles)</li>
+    <% end %>
+    </ul>
+      <!--END-->
 
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217155348) do
+ActiveRecord::Schema.define(version: 20151221181620) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151217155348) do
     t.string   "organizer"
     t.date     "date"
     t.time     "time"
-    t.string   "location"
+    t.string   "address"
     t.decimal  "price",       precision: 8, scale: 2
     t.string   "event_type"
     t.string   "dance_style"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20151217155348) do
     t.integer  "user_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
