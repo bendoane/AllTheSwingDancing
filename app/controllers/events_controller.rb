@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
   def show
     @event=Event.find(params[:id])
+    @location=@event.address
   end
 
   def update

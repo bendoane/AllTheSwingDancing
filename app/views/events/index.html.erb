@@ -11,7 +11,7 @@
           <h4><%=link_to truncate(e.name, :length => 30), e%></h4>
         </div>
         <div class = "panel-body">
-        <%=e.location%><br>
+        <%=e.address%><br>
         <%=number_to_currency(e.price)%>
 
         <h4 style="float:right;"><%=e.date.strftime("%d %b")%>
