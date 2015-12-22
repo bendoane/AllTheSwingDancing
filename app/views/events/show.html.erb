@@ -1,3 +1,4 @@
+<!--FACEBOOK SCRIPT-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -6,7 +7,11 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1667925190116529";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<!--END-->
+<!--Google Maps Script-->
+<script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script>
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+<!--End-->
 
 <div class = "container">
   <div class="row">
@@ -18,6 +23,7 @@
     Event Type: <%=@event.event_type%><br>
     Dance Style: <%=@event.dance_style%><br>
     <br>
+
     <!--FACEBOOK 'LIKE' BUTTON -->
     <div
       class="fb-like"
@@ -25,14 +31,29 @@
       data-width="450"
       data-show-faces="true">
     </div>
-    <!--  -->
+    <!--END-->
     <br>
+    <!--Facebook Comments-->
     <div class="fb-comments" data-href="https://www.facebook.com/events/349701035238052/" data-numposts="5"></div>
+    <!--END-->
 
-    <!--GEOCODING LOCATION-->
-    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=400x400&sensor=false&zoom=16&markers=#{@event.location.latitude}%2C#{@event.location.longitude}" %>
+    <!--Resposive maps via GOOGLE-->
+    <div style='width: 400px;'>
+      <div id="map" style='width: 400px; height: 400px;'></div>
+    </div>
+    <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+    </script>
+    <!--END-->
+
+    <!--Geocoding Nearby Locationa-->
     <hr>
-    <h3>Other Events Nearby</h3>
+    <h3>Other Regional Events</h3>
     <ul>
     <%@event.location.nearbys(200).each do |loc|%>
       <div class="col-xs-3", id="event-tabs">
@@ -49,6 +70,5 @@
       <%end%>
     </ul>
       <!--END-->
-
   </div>
 </div>
