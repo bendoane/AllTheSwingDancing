@@ -11,8 +11,6 @@
       <%= f.submit "Sign In!", class:"btn btn-primary btn-md"%>
     <%end%>
     <br>
-    New to Swing Out?
-    <%=button_to "Sign up now!", new_user_path, class: "btn btn-default btn-sm"%>
   </div>
 
   <!--Omni stuff-->
@@ -22,11 +20,18 @@
       <% if provider !="open_id" %>
         <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}" %>
       <% else %>
-        <%= link_to image_tag("auth/#{provider}_32.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id" %>
+        <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id" %>
       <% end %>
    <% end %>
   </div>
     <!--END-->
-
+  <div class="col-xs-12" id="sign-in-well">
+    <h3 class="well">
+      New to All the Swing Dancing?
+      <button class="btn btn-default btn-md">
+        <%=link_to "Sign up now!", new_user_path, style: "text-decoration: none; color:black;"%>
+      </button>
+    </h3>
+  </div>
 
 </div>

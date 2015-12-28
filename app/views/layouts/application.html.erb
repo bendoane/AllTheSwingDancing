@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IndieLindy</title>
+  <title>All the Swing</title>
   <meta charset="UTF-8">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=root_url%>">Indie Lindy</a>
+                <a class="navbar-brand" href="<%=root_url%>">All the Swing Dancing</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -207,7 +207,14 @@
 <br>
 <hr>
 <footer>
-  IndieLindy™ ©2015 by <a href="https://www.linkedin.com/in/ben-doane-b9040348">Ben Doane</a> || Proud <a href="https://www.theironyard.com/locations/indianapolis.html">Iron Yard</a> Final Project
+  AllTheSwingDancing™ ©2015 by <a href="https://www.linkedin.com/in/ben-doane-b9040348">Ben Doane</a> || Proud <a href="https://www.theironyard.com/locations/indianapolis.html">Iron Yard</a> Final Project
+  <%if current_user%>
+    <%if current_user.username != nil%>
+    ||  Logged in as <%=current_user.username%>
+    <%elsif current_user.first_name%>
+    ||  Logged in as <%=current_user.first_name.upcase%>
+    <%end%>
+  <%end%>
 </footer>
 
 </html>

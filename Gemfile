@@ -8,6 +8,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
