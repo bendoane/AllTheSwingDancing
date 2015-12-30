@@ -9,6 +9,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem "koala", "~> 2.2"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
