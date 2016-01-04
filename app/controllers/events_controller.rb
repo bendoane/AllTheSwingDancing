@@ -13,8 +13,13 @@ class EventsController < ApplicationController
   def create
     @event=Event.new(event_params)
     @event.user = current_user
-    @event.save!
-    redirect_to root_url
+    if @event.save
+      flash[:notice]="You've added a new event!"
+      redirect_to root_url
+    else
+      flash[:notice]="Looks like there were some errors. Let's check."
+      render :new
+    end
   end
 
   def show

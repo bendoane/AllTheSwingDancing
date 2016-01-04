@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
   <!--FLASH NOTICES-->
     <% flash.each do |name, msg| -%>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert" style="text-align:center;">
       <%= content_tag :div, msg, class: name %>
       </div>
     <% end -%>
@@ -16,6 +16,26 @@
     <!--END-->
 </head>
 <body>
+  <!--FACEBOOK SDK  -->
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1667925190116529',
+            xfbml      : true,
+            version    : 'v2.5'
+          });
+        };
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <!--END  -->
+
+
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,73 +61,39 @@
 
                     <%unless current_user%>
                     <li>
-                      <%=link_to "Login", new_session_path%>
-                    </li>
-                    <li>
                       <%=link_to "Sign Up!", new_user_path%>
                     </li>
                     <%end%>
                     <%if current_user%>
                     <li>
-                      <%=link_to "Log Out", session_path(@current_user), method: :delete%>
+                      <%= link_to "My Events", root_url%>
                     </li>
                     <li>
-                      <%=link_to "Create an Event", new_event_path%>
+                      <%=link_to "Create Event", new_event_path%>
                     </li>
                     <%end%>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-item.html">Single Portfolio Item</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <%=link_to "About", info_about_path%>
                     </li>
                     <li>
                         <%=link_to "Contact", info_contact_path%>
                     </li>
+                    <%unless current_user%>
+                    <li>
+                      <%=link_to "Login", new_session_path%>
+                    </li>
+                    <%end%>
+                    <%if current_user%>
+                    <li>
+                      <%=link_to "Log Out", session_path(@current_user), method: :delete%>
+                    </li>
+                    <%end%>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
-<!--FACEBOOK SDK  -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1667925190116529',
-          xfbml      : true,
-          version    : 'v2.5'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!--END  -->
 
     <!--Facebook login stuffs  -->
     <script>
@@ -197,15 +183,16 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
 <div id="status">
 </div>
 
 <%= yield %>
 
 </body>
+
 <br>
 <hr>
+
 <footer>
   AllTheSwingDancing™ ©2015 by <a href="https://www.linkedin.com/in/ben-doane-b9040348">Ben Doane</a> || Proud <a href="https://www.theironyard.com/locations/indianapolis.html">Iron Yard</a> Final Project
   <%if current_user%>
