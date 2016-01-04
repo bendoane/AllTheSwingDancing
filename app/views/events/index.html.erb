@@ -14,7 +14,7 @@
         <%=e.address%><br>
         <%=number_to_currency(e.price)%>
 
-        <h4 style="float:right;"><%=e.date.strftime("%d %b")%>
+        <h4><%=e.date.strftime("%b %d")%>
           <%if e.user == current_user && current_user != nil%>
             <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
             <%else%>

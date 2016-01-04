@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20151222213020) do
     t.date     "date"
     t.time     "time"
     t.string   "address"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "price",             precision: 8, scale: 2
     t.string   "event_type"
     t.string   "dance_style"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "status"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "attendance_status"
   end
 
   create_table "locations", force: :cascade do |t|
