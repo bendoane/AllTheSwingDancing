@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  has_one :location
+  has_one :location, dependent: :destroy
   validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style
   validate :date_cannot_be_in_the_past
   validates :price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => 0}
@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
       errors.add(:date, "Events must have a date") if
         date == nil
     end
-    
+
   after_save do |event|
     event.location = Location.new
     event.location.address = event.address
