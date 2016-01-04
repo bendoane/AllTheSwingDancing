@@ -15,3 +15,20 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+
+$(function() {
+  $('#event_image_thumbnail').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      img.src = file.target.result;
+      $('#preview').html(img);
+      img.style.width = '300px';
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});

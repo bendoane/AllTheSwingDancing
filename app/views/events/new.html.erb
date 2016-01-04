@@ -40,14 +40,24 @@
       </div>
       <!--  -->
 
-      <br>
-      <br>
-    <div class="field">
-      <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa"]%>
-    </div>
-    <div class="actions">
-      <%= f.submit "Add Event", class: "btn btn-standard btn-md"%>
-    </div>
+        <br>
+        <br>
+      <div class="field">
+        <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa"]%>
+      </div>
+      <div class="actions">
+        <%= f.submit "Add Event", class: "btn btn-standard btn-md"%>
+      </div>
+      </div>
+      <div class="col-xs-4">
+        <h4>Upload an Event Image</h4>
+        <div id="event_image_thumbnail">
+          <%= f.attachment_field :event_image %>
+        </div>
+        <br>
+        <div id="preview">
+        </div>
+      </div>
     <%end%>
-    <br>
+
   </div>

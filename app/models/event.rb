@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
       errors.add(:date, "Events must have a date") if
         date == nil
     end
-
+    
   after_save do |event|
     event.location = Location.new
     event.location.address = event.address

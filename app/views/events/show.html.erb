@@ -17,13 +17,18 @@
   <div class="row">
     <h1><%=@event.name%></h1>
     <hr>
-    <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
-    <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
-    Host Organization: <%=@event.organizer%><br>
-    Event Type: <%=@event.event_type%><br>
-    Dance Style: <%=@event.dance_style%><br>
-    <br>
-
+    <div class="col-xs-6"
+      <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
+      <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
+      Host Organization: <%=@event.organizer%><br>
+      Event Type: <%=@event.event_type%><br>
+      Dance Style: <%=@event.dance_style%><br>
+      <br>
+    </div>
+    <div class="col-xs-4">
+        <%=image_tag attachment_url(@event, :event_image), class: "img-responsive"%>
+    </div>
+    </div>
     <!--FACEBOOK 'LIKE' BUTTON -->
     <div
       class="fb-like"
@@ -70,5 +75,4 @@
       <%end%>
     </ul>
       <!--END-->
-  </div>
 </div>
