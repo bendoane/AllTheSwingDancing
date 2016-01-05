@@ -15,7 +15,8 @@
 
 <div class = "container">
   <div class="row">
-    <h1><%=@event.name%></h1>
+      <h1><%=@event.name%></h1>
+      <%=link_to "Add to My Events", info_my_events_path%>
     <hr>
     <div class="col-xs-6"
       <h4><%=@event.date.strftime("%b %d, %Y")%></h4>

@@ -56,6 +56,7 @@
                       <li>
                         <a id="signed_in">Currently signed in as <%=current_user.username.capitalize%>!</a>
                       </li>
+                      <li><br></li>
                       <%end%>
                     <%end%>
 
@@ -65,9 +66,15 @@
                     </li>
                     <%end%>
                     <%if current_user%>
-                    <li>
-                      <%= link_to "My Events", root_url%>
-                    </li>
+                      <%if current_page?("/info/my_events")%>
+                        <li>
+                          <%= link_to "All Events", root_url%>
+                        </li>
+                      <%else%>
+                        <li>
+                          <%= link_to "My Events", info_my_events_path%>
+                        </li>
+                      <%end%>
                     <li>
                       <%=link_to "Create Event", new_event_path%>
                     </li>

@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20151222213020) do
     t.string   "dance_style"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "attendance_status"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.boolean  "attendance_status",                         default: false, null: false
     t.string   "event_image_id"
   end
 

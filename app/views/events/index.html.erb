@@ -1,7 +1,4 @@
 <div class = "container">
-  <div class="row">
-      <h1>Get ready to Swing!</h1>
-  </div>
   <br>
   <div class="row">
     <%@events.each do |e|%>
@@ -14,17 +11,17 @@
         <%=e.address%><br>
         <%=number_to_currency(e.price)%>
 
-        <h4><%=e.date.strftime("%b %d")%>
+        <h4><%=e.date.strftime("%b %d")%></h4>
           <%if e.user == current_user && current_user != nil%>
             <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
             <%else%>
             <%end%>
-            <br>
-            <br>
-            <!--FACEBOOK 'LIKE' BUTTON -->
-            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-            <!--  -->
-          </h4>
+            <%if current_user && current_user!= nil%>
+              <input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger">
+              <%end%>
+            <!-- FACEBOOK 'LIKE' BUTTON -->
+            <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div> -->
+            <!--END -->
 
           </div>
         </div>

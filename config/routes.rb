@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'info/about' =>"info#about"
   get 'info/contact' =>"info#contact"
   get 'locations/index'
+  get 'info/my_events' =>"info#my_events"
 
 
   # Example of regular route:
