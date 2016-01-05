@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :authorizations, :dependent => :destroy
 
   #Authentications
-
   def self.create_from_omniauth_data(omniauth_data)
     user = User.new(
       :first_name => omniauth_data['info']['name'].to_s.downcase,

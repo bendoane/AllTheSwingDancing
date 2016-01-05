@@ -15,8 +15,9 @@
 
   <!--Omni stuff-->
   <div class="social_network_authorize">
-  <h4>Or Log in using...</h4>
-   <% ["twitter","facebook", "linkedin","open_id"].each do |provider| %>
+  <h4>Or Log in using Facebook!</h4>
+   <% ["facebook"].each do |provider| %>
+   <!--This is left in this formatting for ease of adding twitter and google-->
       <% if provider !="open_id" %>
         <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}" %>
       <% else %>
