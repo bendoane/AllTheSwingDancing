@@ -34,14 +34,13 @@ ActiveRecord::Schema.define(version: 20160106150032) do
     t.date     "date"
     t.time     "time"
     t.string   "address"
-    t.decimal  "price",             precision: 8, scale: 2
+    t.decimal  "price",          precision: 8, scale: 2
     t.string   "event_type"
     t.string   "dance_style"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
-    t.boolean  "attendance_status",                         default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "event_image_id"
   end
 
@@ -77,8 +76,9 @@ ActiveRecord::Schema.define(version: 20160106150032) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.text     "omniauth_data"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "attendance_status",   default: false, null: false
     t.integer  "user_id"
   end
 

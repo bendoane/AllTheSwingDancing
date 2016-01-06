@@ -5,29 +5,37 @@
     <% four.each do |e|%>
       <div class="col-xs-3", id="event-tabs">
         <div class="panel panel-default">
+
           <div class="panel-heading" id="panel-title">
             <h4 class="event-tab">
-              <%if e.attendance_status == true%>
-                <%= link_to "♫", attendance_status_check_event_path(e), method: :put%>
+              <%if e.user == current_user && current_user != nil%>
+                <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
               <%else%>
-                <%= link_to "≠", attendance_status_check_event_path(e), method: :put%>
-                <%end%>
+              <%end%>
               <%=link_to truncate(e.name, :length => 30), e%>
             </h4>
           </div>
 
           <div class = "panel-body">
-          <%=e.address%><br>
-          <%=number_to_currency(e.price)%>
-          <h4><%=e.date.strftime("%b %d")%></h4>
-            <%if e.user == current_user && current_user != nil%>
-              <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
+            <%=e.address%><br>
+            <%=number_to_currency(e.price)%>
+            <h4 class="event-date"><%=e.date.strftime("%b %d")%></h4>
+                <!-- FACEBOOK 'LIKE' BUTTON -->
+                <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div> -->
+                <!--END -->
+          </div>
+
+          <div class="panel-heading" id="panel-bottom">
+            Status:
+            <%if @user%>
+              <%if @user.attending?(e) ==true%>
+                <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
               <%else%>
+                <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
               <%end%>
-              <!-- FACEBOOK 'LIKE' BUTTON -->
-              <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div> -->
-              <!--END -->
-            </div>
+          <%end%>
+          </div>
+
 
           </div>
         </div>

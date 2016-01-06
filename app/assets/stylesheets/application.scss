@@ -122,16 +122,24 @@
   display: inline;
   text-align: center;
 }
-// Page info
+// Page Panel info
 .event-tab a{
   color: black;
   font-weight: 700;
 }
-#panel-title :hover{
+.event-tab :hover{
   text-decoration: none;
   color: black;
   font-weight: 700;
   text-shadow: -1px 1px #9d9d9d;
+}
+.event-date{
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+}
+#panel-bottom{
+  margin: none;
 }
 // Image upload
 #preview{

@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :attendances
-  has_many :users, through: :attendance
+  has_many :users, through: :attendances
   has_one :location, dependent: :destroy
   belongs_to :user
   validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style

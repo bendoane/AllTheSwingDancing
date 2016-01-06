@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :attendance
-  has_many :events, through: :attendance, dependent: :destroy
+  has_many :attendances
+  has_many :events, through: :attendances, dependent: :destroy
   has_many :made, :class_name => "Event"
   serialize :omniauth_data, JSON
 
