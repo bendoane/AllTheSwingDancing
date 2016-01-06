@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'info/contact' =>"info#contact"
   get 'locations/index'
   get 'info/my_events' =>"info#my_events"
+  get 'info/privacy_policy' => "info#privacy_policy"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

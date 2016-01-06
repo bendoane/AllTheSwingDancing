@@ -15,6 +15,7 @@ class AuthorizationsController < ApplicationController
     else
       @new_auth = Authorization.create_from_omniauth_data(omniauth, current_user) #Create a new user
       flash[:notice] = "Welcome #{omniauth['provider']} user. Your account has been created."
+      @auth.user.first_name = @auth.user.username
       Session.create(@new_auth.user, true) #Log the authorizing user in.
       redirect_to root_url
     end
