@@ -1,15 +1,16 @@
 class User < ActiveRecord::Base
+  has_many :attendance
+  has_many :events, through: :attendance, dependent: :destroy
+  has_many :made, :class_name => "Event"
+  serialize :omniauth_data, JSON
+
   #For Authlogic
   acts_as_authentic do |configuration|
     configuration.session_class = Session
     configuration.ignore_blank_passwords = true
   end
-  has_many :events, dependent: :destroy
-  serialize :omniauth_data, JSON
-
   #For OmniAuth
   has_many :authorizations, :dependent => :destroy
-
   #Authentications
   def self.create_from_omniauth_data(omniauth_data)
     user = User.new(
@@ -21,9 +22,14 @@ class User < ActiveRecord::Base
     user.reset_persistence_token! #set persistence_token else sessions will not be created
     user
   end
-  
+
   def full_name
     return "#{self.first_name} #{self.last_name}"
   end
+
+  def attending?(event)
+    self.events.include?(event)
+  end
+
 
 end
