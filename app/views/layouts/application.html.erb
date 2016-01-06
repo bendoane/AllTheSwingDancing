@@ -208,7 +208,7 @@
       <%if current_user.username != nil %>
       ||  Logged in as <%=current_user.username.capitalize%>
       <%elsif current_user.first_name%>
-      ||  Logged in as <%=current_user.username.capitalize%>
+      ||  Logged in as <%=current_user.first_name.capitalize%>
       <%end%>
     <%end%>
   </nav>
