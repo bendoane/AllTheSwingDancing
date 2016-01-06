@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def index
     @user = current_user
-    @events = Event.all.order("date DESC")
+    @events = Event.all.order("date ASC")
   end
 
   def new
