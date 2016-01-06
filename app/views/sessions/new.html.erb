@@ -8,23 +8,27 @@
       <div class="field">
         <%= f.password_field :password, placeholder: "password"%>
       </div>
-      <%= f.submit "Sign In!", class:"btn btn-primary btn-md"%>
+      <%= f.submit "Sign In!"%>
     <%end%>
     <br>
   </div>
 
   <!--Omni stuff-->
   <div class="social_network_authorize">
-  <h4>Or Log in using Facebook!</h4>
-   <% ["facebook"].each do |provider| %>
-   <!--This is left in this formatting for ease of adding twitter and google-->
-      <% if provider !="open_id" %>
-        <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}" %>
-      <% else %>
-        <%= link_to image_tag("#{provider}_32.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id" %>
-      <% end %>
-   <% end %>
-  </div>
+    <div class="social-icons">
+      <h4>Or Log in using Facebook!</h4>
+       <% ["facebook"].each do |provider| %>
+       <!--This is left in this formatting for ease of adding twitter and google-->
+          <% if provider !="open_id" %>
+          <%= link_to "/auth/#{provider}" do
+            image_tag("facebook_blk.png", onmouseover: "this.src='#{asset_path('facebook_blu.png')}'", onmouseout: "this.src='#{asset_path('facebook_blk.png')}'")
+            end %>
+          <% else %>
+            <%= link_to image_tag("#{provider}_blk.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id" %>
+          <% end %>
+       <% end %>
+      </div>
+    </div>
     <!--END-->
   <div class="col-xs-12" id="sign-in-well">
     <h3 class="well">
