@@ -30,18 +30,18 @@
         <%=image_tag attachment_url(@event, :event_image), class: "img-responsive"%>
     </div>
     </div>
-    <!--FACEBOOK 'LIKE' BUTTON -->
-    <div
+    <!-- FACEBOOK 'LIKE' BUTTON -->
+    <!-- <div
       class="fb-like"
       data-share="true"
       data-width="450"
       data-show-faces="true">
-    </div>
+    </div> -->
     <!--END-->
-    <br>
+    <!-- <br> -->
     <!--Facebook Comments-->
-    <div class="fb-comments" data-href="https://www.facebook.com/events/427416337451669/" data-numposts="5"></div>
-    <!--END-->
+    <!-- <div class="fb-comments" data-href="https://www.facebook.com/events/427416337451669/" data-numposts="5"></div> -->
+    <!--END -->
 
     <!--Resposive maps via GOOGLE-->
     <div style='width: 400px;'>
@@ -66,7 +66,7 @@
       <div class="col-xs-3", id="event-tabs">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4><%= link_to truncate(loc.event.name, :length=>30), loc.event %></h4>
+            <h4 class="event-tab"><%= link_to truncate(loc.event.name, :length=>30), loc.event %></h4>
           </div>
           <div class="panel-body">
             <%= loc.distance.round(0) %> miles away<br>

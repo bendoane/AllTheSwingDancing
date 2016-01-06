@@ -34,11 +34,11 @@ class EventsController < ApplicationController
 
   def attendance_status_check
     @event = Event.find(params[:id])
-    if @event.attendance_status == false
-      @event.update_attributes(attendance_status: true)
+    if current_user.attending?(@event) ==false
+      @event.users << current_user
       redirect_to root_url
     else
-      @event.update_attributes(attendance_status: false)
+      @event.users.delete(current_user)
       redirect_to root_url
     end
   end
