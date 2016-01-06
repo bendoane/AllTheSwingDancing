@@ -62,19 +62,39 @@
     <hr>
     <h3>Other Regional Events</h3>
     <ul>
-    <%@event.location.nearbys(200).each do |loc|%>
+    <%@event.location.nearbys(200).each_slice(4) do |four|%>
+      <div class="row">
+      <% four.each do |e|%>
       <div class="col-xs-3", id="event-tabs">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="event-tab"><%= link_to truncate(loc.event.name, :length=>30), loc.event %></h4>
+            <h4 class="event-tab"><%= link_to truncate(e.event.name, :length=>30), e.event %></h4>
           </div>
           <div class="panel-body">
-            <%= loc.distance.round(0) %> miles away<br>
-            in <%=loc.event.address%>
-          </div>
+            <%if e.distance.round(0) <= 20.0%>
+              Also here in town!
+            <%else%>
+              <%= e.distance.round(0) %> miles away<br>
+              at <%=e.event.address%>
+            <%end%>
+            </div>
+            <div class="panel-heading" id="panel-bottom">
+              Status:
+              <%if @user%>
+                <%if @user.attending?(e) ==true%>
+                  <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
+                <%else%>
+                  <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
+                <%end%>
+            <%end%>
+            </div>
+
+
         </div>
       </div>
       <%end%>
+    </div>
+    <%end%>
     </ul>
       <!--END-->
 </div>

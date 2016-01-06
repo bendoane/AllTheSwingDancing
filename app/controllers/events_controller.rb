@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @event=Event.find(params[:id])
     @events=Event.all
     @location=@event.address
@@ -36,10 +37,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if current_user.attending?(@event) ==false
       @event.users << current_user
-      redirect_to root_url
+      redirect_to :back
     else
       @event.users.delete(current_user)
-      redirect_to root_url
+      redirect_to :back
     end
   end
 
