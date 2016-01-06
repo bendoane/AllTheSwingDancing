@@ -32,6 +32,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def attendance_status_check
+    @event = Event.find(params[:id])
+    if @event.attendance_status == false
+      @event.update_attributes(attendance_status: true)
+      redirect_to root_url
+    else
+      @event.update_attributes(attendance_status: false)
+      redirect_to root_url
+    end
+  end
+
   def update
   end
 

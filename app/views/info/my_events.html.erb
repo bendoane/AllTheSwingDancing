@@ -1,14 +1,16 @@
 <div class="container">
-  <h1>My Events</h1>
+  <h1 id="web-app-title" style="font-size:42px;">My Events</h1>
   Helping keep track of the events you want to go to!
   <hr>
   <!--Events owned by Users-->
     <%@events.each do |e|%>
       <%if e.user == current_user && current_user != nil%>
-        <div class="col-xs-3", id="event-tabs">
+        <div class="col-xs-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4><%=link_to truncate(e.name, :length => 30), e%></h4>
+              <div class="event-tabs">
+                <h4><%=link_to truncate(e.name, :length => 30), e%></h4>
+              </div>
             </div>
             <div class = "panel-body">
             <%=e.address%><br>
@@ -30,7 +32,7 @@
   <!---->
   <%@events.each do |e|%>
     <%if e.attendance_status == true%>
-      <%e.name%>
+      <%=e.name%>
     <%end%>
   <%end%>
 

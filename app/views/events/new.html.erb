@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Add an event!</h1>
+  <h1 id="web-app-title" style="font-size:42px;">Add an event!</h1>
 
   <%=bootstrap_form_for(@event) do |f|%>
     <div class="col-xs-8">
@@ -50,7 +50,7 @@
       </div>
       </div>
       <div class="col-xs-4">
-        <h4>Upload an Event Image</h4>
+        <h3>Upload an Event Image</h3>
         <div id="event_image_thumbnail">
           <%= f.attachment_field :event_image %>
         </div>
@@ -59,5 +59,5 @@
         </div>
       </div>
     <%end%>
-
   </div>
+  

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions
-  resources :events
+  resources :events do
+    member do
+      put :attendance_status_check
+    end
+  end
   resources :authorizations
   resources :locations
   match '/auth/:provider/callback' => 'authorizations#create',via: [:get, :post]
@@ -18,7 +22,6 @@ Rails.application.routes.draw do
   get 'info/contact' =>"info#contact"
   get 'locations/index'
   get 'info/my_events' =>"info#my_events"
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

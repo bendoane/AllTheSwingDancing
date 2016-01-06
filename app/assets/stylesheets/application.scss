@@ -13,14 +13,16 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
-
- html,
- body {
-     height: 100%;
+// Overall CSS
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+ html, body {
+  height: 100%;
  }
 
  body {
-     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+   padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
  }
 
  .img-portfolio {
@@ -83,6 +85,10 @@
      align-items: center;
      clear:both;
  }
+ #footer{
+   border-top: 5px;
+   min-height: 20px;
+ }
 
  /* Responsive Styles */
 
@@ -102,16 +108,32 @@
          height: 70%;
      }
  }
+
+// Navbar info
+#web-app-title{
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+}
 #signed_in:hover{
   text-decoration: none;
   color: #9d9d9d;
 }
-
 #sign-in-well{
   display: inline;
   text-align: center;
 }
-
+// Page info
+.event-tab a{
+  color: black;
+  font-weight: 700;
+}
+#panel-title :hover{
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  text-shadow: -1px 1px #9d9d9d;
+}
+// Image upload
 #preview{
   max-width:40px;
   max-height: 80px;
