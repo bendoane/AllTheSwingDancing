@@ -6,9 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!--Lobster Font-->
   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-  <!--Josefin font-->
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
   <!--FLASH NOTICES-->
     <% flash.each do |name, msg| -%>
@@ -38,30 +36,24 @@
   </script>
 <!--END  -->
 
-
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
+              <div class="title-with-icon">
+                <%=image_tag "alltheswingdancing2x50white.png", class: "img-responsive"%>
+              </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="web-app-title" href="<%=root_url%>">All the Swing Dancing</a>
+                  <a class="navbar-brand" id="web-app-title" href="<%=root_url%>">All the Swing Dancing</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <%if current_user%>
-                      <%if current_user.username%>
-                      <li>
-                        <a id="signed_in"><%=current_user.username.capitalize%> <i class="glyphicon glyphicon-user"></i></a>
-                      </li>
-                      <%end%>
-                    <%end%>
-
                     <%unless current_user%>
                     <li>
                       <%=link_to "Sign Up!", new_user_path%>
@@ -104,7 +96,7 @@
         <!-- /.container -->
     </nav>
 
-    <!--Facebook login stuffs  -->
+<!--Facebook login stuffs  -->
     <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -128,7 +120,6 @@
         'into Facebook.';
     }
   }
-
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -137,7 +128,6 @@
       statusChangeCallback(response);
     });
   }
-
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '{1667925190116529}',
@@ -146,23 +136,9 @@
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.2' // use version 2.2
  });
-
- // Now that we've initialized the JavaScript SDK, we call
- // FB.getLoginStatus().  This function gets the state of the
- // person visiting this page and can return one of three states to
- // the callback you provide.  They can be:
- //
- // 1. Logged into your app ('connected')
- // 2. Logged into Facebook, but not your app ('not_authorized')
- // 3. Not logged into Facebook and can't tell if they are logged into
- //    your app or not.
- //
- // These three cases are handled in the callback function.
-
  FB.getLoginStatus(function(response) {
    statusChangeCallback(response);
  });
-
  };
  // Load the SDK asynchronously
    (function(d, s, id) {
@@ -173,8 +149,6 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   // Here we run a very simple test of the Graph API after login is
-   // successful.  See statusChangeCallback() for when this call is made.
    function testAPI() {
      console.log('Welcome!  Fetching your information.... ');
      FB.api('/me', function(response) {
@@ -184,11 +158,6 @@
      });
    }
  </script>
- <!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
@@ -196,6 +165,7 @@
 </div>
 
 <%= yield %>
+
 <br>
 <br>
 </body>

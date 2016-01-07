@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106150032) do
+ActiveRecord::Schema.define(version: 20160107145400) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160106150032) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "event_image_id"
+    t.text     "description"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -76,9 +77,9 @@ ActiveRecord::Schema.define(version: 20160106150032) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.text     "omniauth_data"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.boolean  "attendance_status",   default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "attendance_status",   default: true, null: false
     t.integer  "user_id"
   end
 

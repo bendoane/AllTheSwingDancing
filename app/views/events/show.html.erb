@@ -13,39 +13,56 @@
 <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
 <!--End-->
 
+<!--Event Title  -->
 <div class = "container">
   <div class="row">
-      <h1><%=@event.name%></h1>
-      <%=link_to "Add to My Events", info_my_events_path%>
-    <hr>
-    <div class="col-xs-6"
-      <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
-      <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
-      Host Organization: <%=@event.organizer%><br>
-      Event Type: <%=@event.event_type%><br>
-      Dance Style: <%=@event.dance_style%><br>
-      <br>
+    <div class="col-xs-10">
+      <h1 id="event-title"><%=@event.name%></h1>
+      <hr>
     </div>
-    <div class="col-xs-4">
-        <%=image_tag attachment_url(@event, :event_image), class: "img-responsive"%>
+    <div class="col-xs-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%=link_to info_my_events_path do%>
+            <%if @user.attending?(@event) ==true%>
+              <i class="glyphicon glyphicon-ok"> Going!</i>
+            <%else%>
+              <i class="glyphicon glyphicon-remove"> Not going</i>
+            <%end%>
+          <%end%>
+        </div>
+        <div class = "panel-body">
+          <div class="event-date"><%=@event.date.strftime("%b %d")%></div>
+        </div>
+        <div class="panel-heading" id="panel-bottom">
+          <%if @event.user == current_user && current_user != nil%>
+            <%=link_to event_path(@event), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
+          <%else%>
+          <%end%>
+        </div>
+      </div>
     </div>
+  </div>
+    <!--Event Body-->
+    <div class="row">
+      <div class="col-xs-8"
+        <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
+        <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
+        Host Organization: <%=@event.organizer%><br>
+        Event Type: <%=@event.event_type%><br>
+        Dance Style: <%=@event.dance_style%><br>
+        <br>
+        <p><%=@event.description%></p>
+      </div>
+      <div class="col-xs-4">
+          <%=image_tag attachment_url(@event, :event_image), class: "img-responsive", id: "full-event-image"%>
+      </div>
     </div>
-    <!-- FACEBOOK 'LIKE' BUTTON -->
-    <!-- <div
-      class="fb-like"
-      data-share="true"
-      data-width="450"
-      data-show-faces="true">
-    </div> -->
-    <!--END-->
-    <!-- <br> -->
-    <!--Facebook Comments-->
-    <!-- <div class="fb-comments" data-href="https://www.facebook.com/events/427416337451669/" data-numposts="5"></div> -->
-    <!--END -->
-
+  <hr>
     <!--Resposive maps via GOOGLE-->
+    <h3>Event Location Map</h3>
     <div style='width: 400px;'>
-      <div id="map" style='width: 400px; height: 400px;'></div>
+      <div id="map" style='width: 950px; height: 400px;'></div>
     </div>
     <script type="text/javascript">
     handler = Gmaps.build('Google');
@@ -53,7 +70,7 @@
       markers = handler.addMarkers(<%=raw @hash.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(13);
+      handler.getMap().setZoom(14);
     });
     </script>
     <!--END-->
@@ -62,39 +79,37 @@
     <hr>
     <h3>Other Regional Events</h3>
     <ul>
-    <%@event.location.nearbys(200).each_slice(4) do |four|%>
-      <div class="row">
-      <% four.each do |e|%>
-      <div class="col-xs-3", id="event-tabs">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="event-tab"><%= link_to truncate(e.event.name, :length=>30), e.event %></h4>
-          </div>
-          <div class="panel-body">
-            <%if e.distance.round(0) <= 20.0%>
-              Also here in town!
-            <%else%>
-              <%= e.distance.round(0) %> miles away<br>
-              at <%=e.event.address%>
-            <%end%>
+      <%@event.location.nearbys(200).each_slice(4) do |four|%>
+        <div class="row">
+          <%four.each do |e|%>
+            <div class="col-xs-3", id="event-tabs">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="event-tab"><%= link_to truncate(e.event.name, :length=>30), e.event %></h4>
+                </div>
+                <div class="panel-body">
+                  <%if e.distance.round(0) <= 20.0%>
+                    Also here in town!
+                  <%else%>
+                    <%= e.distance.round(0) %> miles away<br>
+                    at <%=e.event.address%>
+                  <%end%>
+                </div>
+                <div class="panel-heading" id="panel-bottom">
+                    Status:
+                    <%if @user%>
+                      <%if @user.attending?(e) ==true%>
+                        <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
+                      <%else%>
+                        <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
+                      <%end%>
+                  <%end%>
+                </div>
+              </div>
             </div>
-            <div class="panel-heading" id="panel-bottom">
-              Status:
-              <%if @user%>
-                <%if @user.attending?(e) ==true%>
-                  <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
-                <%else%>
-                  <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
-                <%end%>
-            <%end%>
-            </div>
-
-
+          <%end%>
         </div>
-      </div>
       <%end%>
-    </div>
-    <%end%>
     </ul>
       <!--END-->
 </div>

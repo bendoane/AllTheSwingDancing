@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   has_many :users, through: :attendances
   has_one :location, dependent: :destroy
   belongs_to :user
-  validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style
+  validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style, :description
   validate :date_cannot_be_in_the_past
   validates :price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => 0}
   attachment :event_image
