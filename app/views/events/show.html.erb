@@ -8,10 +8,6 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!--END-->
-<!--Google Maps Script-->
-<script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script>
-<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
-<!--End-->
 
 <!--Event Title  -->
 <div class = "container">
@@ -19,15 +15,28 @@
     <div class="col-xs-10">
       <h1 id="event-title"><%=@event.name%></h1>
       <hr>
+      <div class="col-xs-3">
+        <div class="info-points">Event: </div><%=@event.dance_style%> <%=@event.event_type%>
+      </div>
+      <div class="col-xs-3">
+        <div class="info-points">Price: </div><%=number_to_currency(@event.price)%>
+      </div>
+      <div class="col-xs-3">
+        <div class="info-points">Location: </div><%=@event.address%>
+      </div>
+      <div class="col-xs-3">
+        <div class="info-points">Host: </div><%=@event.organizer%>
+      </div>
     </div>
     <div class="col-xs-2">
       <div class="panel panel-default">
         <div class="panel-heading">
+          Status:
           <%=link_to info_my_events_path do%>
             <%if @user.attending?(@event) ==true%>
-              <i class="glyphicon glyphicon-ok"> Going!</i>
+              <i class="glyphicon glyphicon-ok"></i>
             <%else%>
-              <i class="glyphicon glyphicon-remove"> Not going</i>
+              <i class="glyphicon glyphicon-remove"></i>
             <%end%>
           <%end%>
         </div>
@@ -36,7 +45,7 @@
         </div>
         <div class="panel-heading" id="panel-bottom">
           <%if @event.user == current_user && current_user != nil%>
-            <%=link_to event_path(@event), method: :delete do%><i class="glyphicon glyphicon-trash"></i><%end%>
+            <%=link_to event_path(@event), method: :delete do%><i class="glyphicon glyphicon-trash"> Trash</i><%end%>
           <%else%>
           <%end%>
         </div>
@@ -45,13 +54,8 @@
   </div>
     <!--Event Body-->
     <div class="row">
-      <div class="col-xs-8"
-        <h4><%=@event.date.strftime("%b %d, %Y")%></h4>
-        <h5>Price: <%=number_to_currency(@event.price)%>  ||  Location: <%=@event.address%></h5>
-        Host Organization: <%=@event.organizer%><br>
-        Event Type: <%=@event.event_type%><br>
-        Dance Style: <%=@event.dance_style%><br>
-        <br>
+      <div class="col-xs-8">
+        <hr>
         <p><%=@event.description%></p>
       </div>
       <div class="col-xs-4">
@@ -81,30 +85,48 @@
     <ul>
       <%@event.location.nearbys(200).each_slice(4) do |four|%>
         <div class="row">
-          <%four.each do |e|%>
+          <%four.each do |single_event|%>
             <div class="col-xs-3", id="event-tabs">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="event-tab"><%= link_to truncate(e.event.name, :length=>30), e.event %></h4>
+                <!--Heading-->
+                <div class="panel-heading" id="panel-title">
+                  <h4 class="event-tab">
+                    <div class"row">
+                      <%=link_to truncate(single_event.event.name, :length => 30), single_event.event%>
+                    </div>
+                  </h4>
                 </div>
-                <div class="panel-body">
-                  <%if e.distance.round(0) <= 20.0%>
+                <!--Body-->
+                  <div class = "panel-body">
+                  <%if single_event.distance.round(0) <= 20.0%>
                     Also here in town!
                   <%else%>
-                    <%= e.distance.round(0) %> miles away<br>
-                    at <%=e.event.address%>
+                    <%= single_event.distance.round(0) %> miles away<br>
+                    at <%=single_event.event.address%>
                   <%end%>
+                  <br>
+                  <h4 class="event-date"><%=single_event.event.date.strftime("%b %d")%></h4>
+                  <%=number_to_currency(single_event.event.price)%>
                 </div>
+                <!--bottom-->
                 <div class="panel-heading" id="panel-bottom">
+                  <%if single_event.event.event_image%>
+                    <div class="footer-with-icon">
+                        <%=image_tag attachment_url(single_event.event, :event_image), class: "img-responsive", id: "event-image-thumbnail"%>
+                    </div>
+                  <%end%>
+                  <%if @user%>
                     Status:
-                    <%if @user%>
-                      <%if @user.attending?(e) ==true%>
-                        <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
-                      <%else%>
-                        <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
+                      <%= link_to attendance_status_check_event_path(single_event.event), method: :put do%>
+                        <%if @user.attending?(single_event.event) ==true%>
+                          <i class="glyphicon glyphicon-ok"></i>
+                        <%else%>
+                          <i class="glyphicon glyphicon-remove"></i>
+                        <%end%>
                       <%end%>
                   <%end%>
                 </div>
+
               </div>
             </div>
           <%end%>
