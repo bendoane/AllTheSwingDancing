@@ -7,48 +7,53 @@
     <!--Should show up regardless of going status  -->
   <!---->
     <!--insert from index-->
+    <!--Panel Heading  -->
     <%@events.each_slice(4) do |four|%>
       <div class="row">
-      <% four.each do |e|%>
+      <% four.each do |event|%>
         <div class="col-xs-3", id="event-tabs">
           <div class="panel panel-default">
 
             <div class="panel-heading" id="panel-title">
               <h4 class="event-tab">
-                <%if e.user == current_user && current_user != nil%>
-                  <%=link_to event_path(e), method: :delete do%><i class="glyphicon glyphicon-cog"></i><%end%>
+                <%if event.user == current_user && current_user != nil%>
+                  <%=link_to event_path(event), method: :delete do%><i class="glyphicon glyphicon-cog"></i><%end%>
                 <%else%>
                 <%end%>
-                <%=link_to truncate(e.name, :length => 30), e%>
+                <%=link_to truncate(event.name, :length => 30), event%>
               </h4>
             </div>
-
+            <!--Body-->
             <div class = "panel-body">
-              <%=e.address%><br>
-              <h4 class="event-date"><%=e.date.strftime("%b %d")%></h4>
-              <%=number_to_currency(e.price)%>
-                  <!-- FACEBOOK 'LIKE' BUTTON -->
-                  <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div> -->
-                  <!--END -->
+              <%=event.address%>
+              <br>
+              <h4 class="event-date"><%=event.date.strftime("%b %d")%></h4>
+              <%=number_to_currency(event.price)%>
             </div>
-            <!--Bottom bar-->
+            <!--Bottom-->
             <div class="panel-heading" id="panel-bottom">
-              Status:
+              <%if event.event_image%>
+                <div class="footer-with-icon">
+                    <%=image_tag attachment_url(event, :event_image), class: "img-responsive", id: "event-image-thumbnail"%>
+                </div>
+              <%end%>
               <%if @user%>
-                <%if @user.attending?(e) ==true%>
-                  <%= link_to "Going!", attendance_status_check_event_path(e), method: :put%>
-                <%else%>
-                  <%= link_to "Not Going", attendance_status_check_event_path(e), method: :put%>
+              Status:
+                  <%= link_to attendance_status_check_event_path(event), method: :put do%>
+                    <%if @user.attending?(event) ==true%>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  <%else%>
+                    <i class="glyphicon glyphicon-remove"></i>
+                  <%end%>
                 <%end%>
             <%end%>
             </div>
-            <!---->
-
             </div>
           </div>
         <%end%>
       </div>
     <%end%>
+    <!---->
 <!--index insert close-->
 
 </div>

@@ -4,46 +4,64 @@
   <!--Panels-->
   <%@events.each_slice(4) do |four|%>
     <div class="row">
-    <% four.each do |event|%>
-      <div class="col-xs-3", id="event-tabs">
-        <div class="panel panel-default">
-          <!--Heading-->
-          <div class="panel-heading" id="panel-title">
-            <h4 class="event-tab">
-              <div class"row">
-                <%=link_to truncate(event.name, :length => 30), event%>
-              </div>
-            </h4>
-          </div>
-          <!--Body-->
-          <div class = "panel-body">
-            <%=event.address%>
-            <br>
-            <h4 class="event-date"><%=event.date.strftime("%b %d")%></h4>
-            <%=number_to_currency(event.price)%>
-          </div>
-          <!--Bottom-->
-          <div class="panel-heading" id="panel-bottom">
-            <%if event.event_image%>
-              <div class="footer-with-icon">
-                  <%=image_tag attachment_url(event, :event_image), class: "img-responsive", id: "event-image-thumbnail"%>
-              </div>
-            <%end%>
-            <%if @user%>
-            Status:
-                <%= link_to attendance_status_check_event_path(event), method: :put do%>
-                  <%if @user.attending?(event) ==true%>
-                  <i class="glyphicon glyphicon-ok"></i>
-                <%else%>
-                  <i class="glyphicon glyphicon-remove"></i>
-                <%end%>
+      <% four.each do |event|%>
+        <div class="col-xs-3", id="event-tabs">
+          <div class="panel panel-default">
+            <!--Heading-->
+            <div class="panel-heading" id="panel-title">
+              <h4 class="event-tab">
+                <div class"row">
+                  <%=link_to truncate(event.name, :length => 30), event%>
+                </div>
+              </h4>
+            </div>
+            <!--Body-->
+            <div class = "panel-body">
+              <%=event.address%>
+              <br>
+              <h4 class="event-date"><%=event.date.strftime("%b %d")%></h4>
+              <%=number_to_currency(event.price)%>
+            </div>
+            <!--Bottom-->
+            <div class="panel-heading" id="panel-bottom">
+              <%if event.event_image%>
+                <div class="footer-with-icon">
+                    <%=image_tag attachment_url(event, :event_image), class: "img-responsive", id: "event-image-thumbnail"%>
+                </div>
               <%end%>
-          <%end%>
-          </div>
+              <%if @user%>
+                Status:
+                  <%= link_to attendance_status_check_event_path(event), method: :put do%>
+                    <%if @user.attending?(event) ==true%>
+                      <i class="glyphicon glyphicon-ok"></i>
+                    <%else%>
+                      <i class="glyphicon glyphicon-remove"></i>
+                    <%end%>
+                  <%end%>
+              <%end%>
+            </div>
           </div>
         </div>
       <%end%>
     </div>
   <%end%>
   <!---->
+<br>
+<br>
+
+<!--Resposive maps via GOOGLE-->
+<h1 id="web-app-title" style="font-size:42px; text-align:center;">All Events Map</h1>
+<hr>
+<div style='width: 400px;'>
+  <div id="map" style='width: 950px; height: 400px;'></div>
+</div>
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
+<!--END-->
 </div>

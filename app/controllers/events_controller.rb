@@ -3,6 +3,11 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all.order("date ASC")
+    @mapevents = Event.all
+    @hash = Gmaps4rails.build_markers(@mapevents) do |event, marker|
+      marker.lat event.location.latitude
+      marker.lng event.location.longitude
+    end
   end
 
   def new
