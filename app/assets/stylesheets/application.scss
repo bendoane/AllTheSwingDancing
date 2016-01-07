@@ -114,6 +114,10 @@
   font-family: 'Lobster', cursive;
   font-size: 30px;
 }
+.title-with-icon{
+  display: inline-block;
+  margin-top: 8px;
+}
 #signed_in:hover{
   text-decoration: none;
   color: #9d9d9d;
@@ -123,6 +127,16 @@
   text-align: center;
 }
 // Page Panel info
+#event-title{
+  font-family: 'Lobster', cursive;
+  font-size: 50px;
+}
+.panel-heading{
+  text-align: center;
+}
+.panel-body{
+  text-align: center;
+}
 .event-tab a{
   color: black;
   font-weight: 700;
@@ -138,13 +152,38 @@
   font-weight: 700;
   font-size: 30px;
 }
+.panel-body{
+  background: url(:event_image);
+}
 #panel-bottom{
   margin: none;
+  text-align: center;
+}
+.footer-with-icon{
+  display: inline-block;
+}
+#event-image-thumbnail{
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  float:left;
 }
 // Image upload
+#event-sidebar{
+  position:relative;
+}
 #preview{
   max-width:40px;
   max-height: 80px;
+}
+#event-submit{
+  float:right;
+  position:absolute;
+  left:100px;
+  top:550px;
+}
+#full-event-image{
+  border-radius: 10px;
 }
 // Social Networking
 .social-icons{

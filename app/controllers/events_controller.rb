@@ -15,6 +15,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     if @event.save
       flash[:notice]="You've added a new event!"
+      @event.users << current_user
       redirect_to root_url
     else
       flash[:notice]="Looks like there were some errors. Let's check."
@@ -50,7 +51,7 @@ class EventsController < ApplicationController
   def destroy
     @event=Event.find(params[:id])
     @event.destroy
-    redirect_to root_url
+    redirect_to :back
   end
 
   def about
@@ -60,7 +61,7 @@ class EventsController < ApplicationController
 private
 
   def event_params
-    params.require(:event).permit(:name,:organizer,:date,:price,:address,:event_type,:dance_style,:event_image)
+    params.require(:event).permit(:name,:organizer,:date,:price,:address,:event_type,:dance_style,:event_image,:description)
   end
 
 

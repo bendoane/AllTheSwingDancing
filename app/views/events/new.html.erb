@@ -3,61 +3,61 @@
 
   <%=bootstrap_form_for(@event) do |f|%>
     <div class="col-xs-8">
-    <div class="field">
-      <%=f.text_field :name, placeholder:"Event Name - Displays only 30 characters on main page"%>
-    </div>
-    <div class="field">
-      <%=f.text_field :organizer%>
-    </div>
-    <div class="field">
-      <%=f.text_field :address, placeholder: "Where's this at?"%>
-    </div>
-    <div class="field">
-      <%=f.date_field :date%>
-    </div>
-    <div class="field">
-      <%=f.text_field :price, placeholder: "$ Dollars"%>
-    </div>
-
-    <!--Still working out the kinks here -->
-    <div class="field">
-      <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"]%>
-    </div>
-      <div class="radio-inline">
-        <input type="radio" name="optradio">Workshop
-      </div>
-      <div class="radio-inline">
-        <input type="radio" name="optradio">Exchange
-      </div>
-      <div class="radio-inline">
-        <input type="radio" name="optradio">Evening Dance
-      </div>
-      <div class="radio-inline">
-        <input type="radio" name="optradio">Dance Camp
-      </div>
-      <div class="radio-inline">
-        <input type="radio" name="optradio">Special Event
-      </div>
-      <!--  -->
-
-        <br>
-        <br>
       <div class="field">
-        <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa"]%>
+        <%=f.text_field :name, placeholder:"Event Name - Displays only 30 characters on main page"%>
       </div>
-      <div class="actions">
-        <%= f.submit "Add Event", class: "btn btn-standard btn-md"%>
+      <div class="field">
+        <%=f.text_field :organizer%>
       </div>
+      <div class="field">
+        <%=f.text_field :address, placeholder: "Where's this at?"%>
       </div>
-      <div class="col-xs-4">
+      <div class="field">
+        <%=f.date_field :date%>
+      </div>
+      <div class="field">
+        <%=f.text_field :price, placeholder: "$ Dollars"%>
+      </div>
+
+      <!--Still working out the kinks here -->
+      <div class="field">
+        <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"]%>
+      </div>
+        <!-- <div class="radio-inline">
+          <input type="radio" name="optradio">Workshop
+        </div>
+        <div class="radio-inline">
+          <input type="radio" name="optradio">Exchange
+        </div>
+        <div class="radio-inline">
+          <input type="radio" name="optradio">Evening Dance
+        </div>
+        <div class="radio-inline">
+          <input type="radio" name="optradio">Dance Camp
+        </div>
+        <div class="radio-inline">
+          <input type="radio" name="optradio">Special Event
+        </div>
+         -->
+        <div class="field">
+          <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa"]%>
+        </div>
+        <div class="field">
+          <%=f.text_area :description, placeholder: "Tell us a bit about this event!"%>
+        </div>
+    </div>
+      <div class="col-xs-4" id="event-sidebar">
         <h3>Upload an Event Image</h3>
+        <h5 style="font-style:italic;">Pro-tip: .png files with no background work best!</h5>
         <div id="event_image_thumbnail">
           <%= f.attachment_field :event_image %>
         </div>
         <br>
         <div id="preview">
         </div>
+        <div class="actions" id="event-submit">
+          <%= f.submit "Add Event", class: "btn btn-standard btn-lg"%>
+        </div>
       </div>
     <%end%>
   </div>
-  
