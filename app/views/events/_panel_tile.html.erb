@@ -14,11 +14,13 @@
             </h4>
           </div>
           <!--Body-->
-          <div class = "panel-body">
+          <div class = "panel-body main">
             <%=event.address%>
             <br>
-            <h4 class="event-date"><%=event.date.strftime("%b %d")%></h4>
-            <%=number_to_currency(event.price)%>
+            <h4 class="event-date">
+              <%=event.date.strftime("%b %d")%>
+            </h4>
+            <%=event.dance_style%> <%=event.event_type%>
           </div>
           <!--Bottom-->
           <div class="panel-heading panel-bottom">
@@ -27,10 +29,9 @@
                   <%=image_tag attachment_url(event, :event_image), class: "img-responsive event-image-thumbnail"%>
               </div>
             <%end%>
-            <%if @user%>
-              Status:
+            <%if current_user%>
                 <%= link_to attendance_status_check_event_path(event), method: :put do%>
-                  <%if @user.attending?(event) ==true%>
+                  <%if current_user.attending?(event) ==true%>
                     <i class="glyphicon glyphicon-ok"></i>
                   <%else%>
                     <i class="glyphicon glyphicon-remove"></i>

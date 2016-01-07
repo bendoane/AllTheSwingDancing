@@ -10,12 +10,6 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def show
-  end
-
-  def update
-  end
-
   def destroy
     @user = User.find(params[:id])
   end
