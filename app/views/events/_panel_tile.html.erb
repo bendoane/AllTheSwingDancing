@@ -1,10 +1,10 @@
 <%@events.each_slice(4) do |four|%>
   <div class="row">
     <% four.each do |event|%>
-      <div class="col-xs-3", id="event-tabs">
+      <div class="col-xs-3 event-tabs">
         <div class="panel panel-default">
           <!--Heading-->
-          <div class="panel-heading" id="panel-title">
+          <div class="panel-heading panel-title">
             <h4 class="event-tab">
               <%if event.user == current_user && current_user != nil%>
                 <%=link_to event_path(event), method: :delete do%><i class="glyphicon glyphicon-cog"></i><%end%>
@@ -21,7 +21,7 @@
             <%=number_to_currency(event.price)%>
           </div>
           <!--Bottom-->
-          <div class="panel-heading" id="panel-bottom">
+          <div class="panel-heading panel-bottom">
             <%if event.event_image%>
               <div class="footer-with-icon">
                   <%=image_tag attachment_url(event, :event_image), class: "img-responsive event-image-thumbnail"%>
