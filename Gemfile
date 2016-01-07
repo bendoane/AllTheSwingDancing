@@ -12,7 +12,7 @@ gem 'gmaps4rails'
 gem "koala", "~> 2.2"
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
-
+gem 'traceroute'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
