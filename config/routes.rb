@@ -17,10 +17,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'events#index'
 
-  post 'users/new' => "users#new"
   get 'info/about' =>"info#about"
   get 'info/contact' =>"info#contact"
-  get 'locations/index'
   get 'info/my_events' =>"info#my_events"
   get 'info/privacy_policy' => "info#privacy_policy"
 
