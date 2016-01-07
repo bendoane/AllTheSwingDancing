@@ -24,7 +24,7 @@
           <div class="panel-heading" id="panel-bottom">
             <%if event.event_image%>
               <div class="footer-with-icon">
-                  <%=image_tag attachment_url(event, :event_image), class: "img-responsive", id: "event-image-thumbnail"%>
+                  <%=image_tag attachment_url(event, :event_image), class: "img-responsive event-image-thumbnail"%>
               </div>
             <%end%>
             <%if @user%>
