@@ -139,8 +139,9 @@
 .panel-heading{
   text-align: center;
 }
-.panel-body{
-  text-align: center;
+.panel-title{
+  min-height: 80px;
+  vertical-align: middle;
 }
 .event-tab a{
   color: black;
@@ -152,17 +153,20 @@
   font-weight: 700;
   text-shadow: -1px 1px #9d9d9d;
 }
+.panel-body.main{
+  text-align: center;
+  min-height: 145px;
+}
 .event-date{
   text-align: center;
   font-weight: 700;
   font-size: 30px;
-}
-.panel-body{
-  background: url(:event_image);
+  vertical-align: middle;
 }
 .panel-bottom{
   margin: none;
   text-align: center;
+  min-height: 70px;
 }
 .footer-with-icon{
   display: inline-block;
@@ -172,6 +176,14 @@
   height: 40px;
   border-radius: 4px;
   float:left;
+}
+.glyphicon-ok{
+  font-size: 40px;
+  color:green;
+}
+.glyphicon-remove{
+  font-size: 40px;
+  color:#992600;
 }
 // Image upload
 #event-sidebar{
