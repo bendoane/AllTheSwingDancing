@@ -30,6 +30,7 @@
     </div>
     <div class="col-xs-2">
       <div class="panel panel-default">
+        <%if @user%>
         <div class="panel-heading">
           Status:
           <%=link_to info_my_events_path do%>
@@ -40,6 +41,7 @@
             <%end%>
           <%end%>
         </div>
+        <%end%>
         <div class = "panel-body">
           <div class="event-date"><%=@event.date.strftime("%b %d")%></div>
         </div>
