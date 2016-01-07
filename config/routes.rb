@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     end
   end
   resources :authorizations
-  resources :locations
   match '/auth/:provider/callback' => 'authorizations#create',via: [:get, :post]
   match '/auth/failure' => 'authorizations#failure', via: [:get, :post]
   match '/auth/:provider' => 'authorizations#blank', via: [:get, :post]
