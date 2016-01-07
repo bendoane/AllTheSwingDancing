@@ -7,8 +7,7 @@ def contact
 end
 
 def my_events
-  @user = current_user
-  @events = @user.events.all.order("date ASC")
+  @events = current_user.events.all.order("date ASC")
 end
 
 end
