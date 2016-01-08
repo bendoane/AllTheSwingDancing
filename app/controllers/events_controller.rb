@@ -66,7 +66,7 @@ class EventsController < ApplicationController
   def destroy
     @event=current_user.events.find(params[:id])
     @event.destroy
-    redirect_to :back
+    redirect_to root_url
   end
 
 private
