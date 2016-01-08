@@ -59,10 +59,6 @@ class EventsController < ApplicationController
     redirect_to :back
   end
 
-  def about
-  end
-
-
 private
 
   def event_params
