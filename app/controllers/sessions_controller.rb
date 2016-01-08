@@ -14,9 +14,6 @@ class SessionsController < ApplicationController
     @event=Event.find(params[:id])
   end
 
-  def update
-  end
-
   def destroy
     @user_session = Session.find
     @user_session.destroy

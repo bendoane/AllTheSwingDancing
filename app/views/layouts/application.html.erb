@@ -8,24 +8,6 @@
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
-  <!--FACEBOOK SDK  -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1667925190116529',
-          xfbml      : true,
-          version    : 'v2.5'
-        });
-      };
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-  <!--END  -->
   <!--Google Maps Script-->
   <script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script>
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
@@ -179,9 +161,9 @@
     || <%=link_to "Privacy Policy", info_privacy_policy_path%>
     <%if current_user%>
       <%if current_user.username != nil %>
-      ||  Logged in as <%=current_user.username.capitalize%>
+      ||  Logged in as <%=current_user.username.upcase%>
       <%elsif current_user.first_name%>
-      ||  Logged in as <%=current_user.first_name.capitalize%>
+      ||  Logged in as <%=current_user.first_name.upcase%>
       <%end%>
     <%end%>
   </nav>

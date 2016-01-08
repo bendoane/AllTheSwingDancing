@@ -94,57 +94,59 @@
 
     <!--Geocoding Nearby Locationa-->
     <hr>
-    <h3>Other Regional Events</h3>
-    <ul>
-      <%@event.location.nearbys(200).each_slice(4) do |four|%>
-        <div class="row">
-          <%four.each do |single_event|%>
-            <div class="col-xs-3", id="event-tabs">
-              <div class="panel panel-default">
-                <!--Heading-->
-                <div class="panel-heading" id="panel-title">
-                  <h4 class="event-tab">
-                    <div class"row">
-                      <%=link_to truncate(single_event.event.name, :length => 30), single_event.event%>
-                    </div>
-                  </h4>
-                </div>
-                <!--Body-->
-                  <div class = "panel-body">
-                  <%if single_event.distance.round(0) <= 20.0%>
-                    Also here in town!
-                  <%else%>
-                    <%= single_event.distance.round(0) %> miles away<br>
-                    at <%=single_event.event.address%>
-                  <%end%>
-                  <br>
-                  <h4 class="event-date"><%=single_event.event.date.strftime("%b %d")%></h4>
-                  <%=number_to_currency(single_event.event.price)%>
-                </div>
-                <!--bottom-->
-                <div class="panel-heading" id="panel-bottom">
-                  <%if single_event.event.event_image%>
-                    <div class="footer-with-icon">
-                        <%=image_tag attachment_url(single_event.event, :event_image), class: "img-responsive event-image-thumbnail"%>
-                    </div>
-                  <%end%>
-                  <%if @user%>
-                    Status:
-                      <%= link_to attendance_status_check_event_path(single_event.event), method: :put do%>
-                        <%if @user.attending?(single_event.event) ==true%>
-                          <i class="glyphicon glyphicon-ok"></i>
-                        <%else%>
-                          <i class="glyphicon glyphicon-remove"></i>
+      <h3>Other Regional Events</h3>
+      <ul>
+        <%@event.location.nearbys(200).each_slice(4) do |four|%>
+          <div class="row">
+            <%four.each do |single_event|%>
+              <div class="col-xs-3", id="event-tabs">
+                <div class="panel panel-default">
+                  <!--Heading-->
+                  <div class="panel-heading" id="panel-title">
+                    <h4 class="event-tab">
+                      <div class"row">
+                        <%=link_to truncate(single_event.event.name, :length => 30), single_event.event%>
+                      </div>
+                    </h4>
+                  </div>
+                  <!--Body-->
+                    <div class = "panel-body main">
+                    <%if single_event.distance.round(0) <= 20.0%>
+                      Also here in town!
+                    <%else%>
+                      <%= single_event.distance.round(0) %> miles away<br>
+                      at <%=single_event.event.address%>
+                    <%end%>
+                    <br>
+                    <h4 class="event-date">
+                      <%=single_event.event.date.strftime("%b %d")%>
+                    </h4>
+                    <%=single_event.event.dance_style%> <%=single_event.event.event_type%>
+                  </div>
+                  <!--bottom-->
+                  <div class="panel-heading" id="panel-bottom">
+                    <%if single_event.event.event_image%>
+                      <div class="footer-with-icon">
+                          <%=image_tag attachment_url(single_event.event, :event_image), class: "img-responsive event-image-thumbnail"%>
+                      </div>
+                    <%end%>
+                    <%if @user%>
+                      Status:
+                        <%= link_to attendance_status_check_event_path(single_event.event), method: :put do%>
+                          <%if @user.attending?(single_event.event) ==true%>
+                            <i class="glyphicon glyphicon-ok"></i>
+                          <%else%>
+                            <i class="glyphicon glyphicon-remove"></i>
+                          <%end%>
                         <%end%>
-                      <%end%>
-                  <%end%>
-                </div>
+                    <%end%>
+                  </div>
 
+                </div>
               </div>
-            </div>
-          <%end%>
-        </div>
-      <%end%>
-    </ul>
-      <!--END-->
+            <%end%>
+          </div>
+        <%end%>
+      </ul>
+
 </div>

@@ -5,13 +5,13 @@
         <div class="panel panel-default">
           <!--Heading-->
           <div class="panel-heading panel-title">
-            <h4 class="event-tab">
+            <div class="event-tab">
               <%if event.user == current_user && current_user != nil%>
                 <%=link_to event_path(event), method: :delete do%><i class="glyphicon glyphicon-cog"></i><%end%>
               <%else%>
               <%end%>
               <%=link_to truncate(event.name, :length => 30), event%>
-            </h4>
+            </div>
           </div>
           <!--Body-->
           <div class = "panel-body main">

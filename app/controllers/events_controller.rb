@@ -55,8 +55,13 @@ class EventsController < ApplicationController
 
   def destroy
     @event=Event.find(params[:id])
-    @event.destroy
-    redirect_to :back
+    if @event.user = current_user
+      @event.destroy
+      redirect_to :back
+    else
+      flash[:notice]="That is not your event to delete!"
+      redirect_to :back
+    end
   end
 
 private

@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_one :location, dependent: :destroy
   belongs_to :user
   validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style, :description, :url, :facebook_url
+  validates_uniqueness_of :name, :case_sensitive => false, :message => "This event seems to exist already..."
   validate :date_cannot_be_in_the_past
   validates :price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => -1}
   attachment :event_image
