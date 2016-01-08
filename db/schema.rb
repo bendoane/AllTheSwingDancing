@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160108130027) do
     t.string   "event_image_id"
     t.text     "description"
     t.string   "url"
+    t.string   "facebook_url"
   end
 
   create_table "locations", force: :cascade do |t|

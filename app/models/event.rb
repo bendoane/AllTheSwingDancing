@@ -3,11 +3,11 @@ class Event < ActiveRecord::Base
   has_many :users, through: :attendances
   has_one :location, dependent: :destroy
   belongs_to :user
-  validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style, :description, :url
+  validates_presence_of :name,:organizer,:price,:address,:event_type,:dance_style, :description, :url, :facebook_url
   validate :date_cannot_be_in_the_past
   validates :price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => -1}
   attachment :event_image
-  validates_format_of :url, :with => /\Ahttp(|s):\/\//
+  validates_format_of :url, :facebook_url, :with => /\Ahttp(|s):\/\//
   before_validation :add_http
 
   def date_cannot_be_in_the_past
@@ -20,6 +20,9 @@ class Event < ActiveRecord::Base
   def add_http
     unless self.url =~ /\Ahttp(|s):\/\//
       self.url = "http://" + self.url
+    end
+    unless self.facebook_url =~ /\Ahttp(|s):\/\//
+      self.facebook_url = "http://" + self.facebook_url
     end
   end
 

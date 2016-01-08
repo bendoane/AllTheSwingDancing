@@ -202,6 +202,26 @@
 #full-event-image{
   border-radius: 10px;
 }
+// Events Full Info Page
+.event-description-body{
+  min-height: 100px;
+}
+.external-event-site-button{
+}
+.event-description-sidebar{
+  min-height: 150px;
+  align-items: center;
+  text-align: center;
+}
+.facebook-link-to-event{
+  display: inline-block;
+  float:right;
+}
+.facebook-link-to-event img{
+  max-width: 40px;
+  display: inline-block;
+}
+
 // Social Networking
 .social-icons{
   align-items: center;
@@ -209,5 +229,4 @@
 }
 .social-icons :link :hover{
   opacity:.8;
-
 }

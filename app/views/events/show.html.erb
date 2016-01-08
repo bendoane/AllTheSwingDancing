@@ -51,15 +51,30 @@
     <div class="row">
       <div class="col-xs-8">
         <hr>
-        <p><%=@event.description%></p>
+        <div class="event-description-body">
+          <p><%=@event.description%></p>
+        </div>
       </div>
       <div class="col-xs-4">
+        <div class="event-description-sidebar">
           <%=image_tag attachment_url(@event, :event_image), class: "img-responsive", id: "full-event-image"%>
+        </div>
       </div>
     </div>
-    <div class="external-event-site-button">
-      <%= button_to "More info for #{@event.name}", click_event_path(@event), class: "btn btn-standard btn-lg", method: :get%>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="external-event-site-button">
+            <%= button_to "Event Home Site", @event.url, class: "btn btn-standard btn-lg", method: :get%>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="facebook-link-to-event">
+          <%=link_to image_tag("facebook_blu.png"), @event.facebook_url, class: "btn btn-standard btn-lg", method: :get%>
+          Find it on Facebook!
+        </div>
+      </div>
     </div>
+
   <hr>
     <!--Resposive maps via GOOGLE-->
     <h3>Event Location Map</h3>
