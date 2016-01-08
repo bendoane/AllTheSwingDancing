@@ -1,0 +1,53 @@
+<%=bootstrap_form_for(@event) do |f|%>
+  <div class="col-xs-8">
+    <div class="field">
+      <%=f.text_field :name, placeholder:"Event Name - Displays only 30 characters on main page"%>
+    </div>
+    <div class="field">
+      <%=f.text_field :organizer%>
+    </div>
+    <div class="field">
+      <%=f.text_field :address, placeholder: "Where's this at?"%>
+    </div>
+    <div class="field">
+      <%=f.date_field :date%>
+    </div>
+    <div class="field">
+      <%=f.text_field :price, placeholder: "$ Dollars"%>
+    </div>
+    <div class="field">
+      <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"], :include_blank => 'Select Type'%>
+    </div>
+    <div class="field">
+      <%=f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa", "Other"], :include_blank => 'Select Type'%>
+    </div>
+    <div class="field">
+      <%=f.text_area :description, placeholder: "Tell us a bit about this event!"%>
+    </div>
+    <div class="field">
+      <%=f.label :url, "External Event Website"%>
+      <%=f.text_field :url, placeholder: "Website for registration and info"%>
+    </div>
+    <div class="field">
+      <%=f.label :facebook_url, "Facebook Event Page"%>
+      <%=f.text_field :facebook_url, placeholder: "Website for registration and info"%>
+    </div>
+  </div>
+  <div class="col-xs-4" id="event-sidebar">
+    <h3>Upload an Event Image</h3>
+    <h5 style="font-style:italic;">Pro-tip: square .png files with no background work best!</h5>
+    <div id="event_image_thumbnail">
+      <%= f.attachment_field :event_image %>
+    </div>
+    <br>
+
+    <div id="preview">
+      <%if @event.event_image%>
+      <%=image_tag attachment_url(@event, :event_image), width: 300%>
+      <%end%>
+    </div>
+    <div class="actions" id="event-submit">
+      <%= f.submit "Add Event", class: "btn btn-standard btn-lg"%>
+    </div>
+  </div>
+  <%end%>
