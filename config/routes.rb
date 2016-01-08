@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       put :attendance_status_check
+      get 'click'
     end
   end
   resources :authorizations

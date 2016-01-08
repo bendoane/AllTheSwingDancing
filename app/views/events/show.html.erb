@@ -1,14 +1,3 @@
-<!--FACEBOOK SCRIPT-->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1667925190116529";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!--END-->
-
 <!--Event Title  -->
 <div class = "container">
   <div class="row">
@@ -19,7 +8,11 @@
         <div class="info-points">Event: </div><%=@event.dance_style%> <%=@event.event_type%>
       </div>
       <div class="col-xs-3">
-        <div class="info-points">Price: </div><%=number_to_currency(@event.price)%>
+        <%if number_to_currency(@event.price) == "$0.00"%>
+          <div class="info-points">Price: </div>Free!
+        <%else%>
+          <div class="info-points">Price: </div><%=number_to_currency(@event.price)%>
+        <%end%>
       </div>
       <div class="col-xs-3">
         <div class="info-points">Location: </div><%=@event.address%>
@@ -63,6 +56,9 @@
       <div class="col-xs-4">
           <%=image_tag attachment_url(@event, :event_image), class: "img-responsive", id: "full-event-image"%>
       </div>
+    </div>
+    <div class="external-event-site-button">
+      <%= button_to "More info for #{@event.name}", click_event_path(@event), class: "btn btn-standard btn-lg", method: :get%>
     </div>
   <hr>
     <!--Resposive maps via GOOGLE-->

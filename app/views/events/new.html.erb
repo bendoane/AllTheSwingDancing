@@ -21,7 +21,7 @@
 
       <!--Still working out the kinks here -->
       <div class="field">
-        <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"]%>
+        <%=f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event", "Blues"]%>
       </div>
         <!-- <div class="radio-inline">
           <input type="radio" name="optradio">Workshop
@@ -44,6 +44,10 @@
         </div>
         <div class="field">
           <%=f.text_area :description, placeholder: "Tell us a bit about this event!"%>
+        </div>
+        <div class="field">
+          <%=f.label :url, "External Event Website"%>
+          <%=f.text_field :url, placeholder: "Website for registration and info"%>
         </div>
     </div>
       <div class="col-xs-4" id="event-sidebar">
