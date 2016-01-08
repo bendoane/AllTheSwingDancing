@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :users, :only => [:new, :create]
-  resources :sessions, :only => [:new, :create, :show, :destroy]
   resources :events do
     member do
       put :attendance_status_check
     end
   end
+  resources :users, :only => [:new, :create]
+  resources :sessions, :only => [:new, :create, :show, :destroy]
   resources :authorizations, :only => [:create, :blank, :failure, :destroy]
   match '/auth/:provider/callback' => 'authorizations#create',via: [:get, :post]
   match '/auth/failure' => 'authorizations#failure', via: [:get, :post]
