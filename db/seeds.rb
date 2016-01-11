@@ -18,15 +18,13 @@ blues_in_the_night = Event.create({name:"Blues in the Night", organizer:"Purdue 
   description:"Purdue Night Train Presents Blues in the Nite!", url:"https://docs.google.com/forms/d/1HH3-L69JqndebxeufMuOaHXci17czO6pzEZwZn-Pkok/viewform?c=0&w=1", facebook_url:"https://www.facebook.com/events/1009442319101693/"})
 big_apple_workshop = Event.create({name:"Big Apple Workshop",organizer:"Naptown Stomp",date:"2016-1-31",address:"701 N Pennsylvania St, Indianapolis, Indiana 46204",price:"25.00",event_type:"Workshop",dance_style:"Lindy",
   description:"Regular swing-outs not enough? Want to jump in on those large line dances? Well this workshop is for you!
-This workshop is catered for those who want to learn the famous Big Apple Lindy routine coreographed by Frankie Manning. A routine that is regularly performed at swing events large and small, this routine is a must know for anyone looking to travel and impress. The Big Apple is also a great way to utilize your solo jazz moves in concert with others! Danced to higher tempos, this routine is exciting, dynamic, and incredibly fun in all situations. Taught by Naptowns own Danny Beyrer, well known for his solo jazz movement and teaching in his own right, its sure to be an incredible workshop! ",
+    This workshop is catered for those who want to learn the famous Big Apple Lindy routine coreographed by Frankie Manning. A routine that is regularly performed at swing events large and small, this routine is a must know for anyone looking to travel and impress. The Big Apple is also a great way to utilize your solo jazz moves in concert with others! Danced to higher tempos, this routine is exciting, dynamic, and incredibly fun in all situations. Taught by Naptowns own Danny Beyrer, well known for his solo jazz movement and teaching in his own right, its sure to be an incredible workshop! ",
  url:"http://www.naptownstomp.org/", facebook_url:"https://www.facebook.com/events/1652284038352268/"})
 stomping_grounds_solomon = Event.create({name:"Stomping Grounds Special",organizer:"Naptown Stomp",date:"2016-1-21",address:"1001 Hosbrook St, Indianapolis, Indiana 46203",price:"0.00",event_type:"Evening Dance",dance_style:"Lindy",
   description:"Indianapolis' very own vintage swing dancing weekly dance and lessons :) Come dance with us and feel free to bring a friend! We will have the fantastic Mr. Solomon Douglas playing for us this night! Check out more about Solomon here: http://solomondouglas.com/
-
-Open Dance: 8pm-10pm
-The fun starts at 8pm for open dancing! If you do the lesson series, it includes admission into the dance so it would be an awesome perk! Or feel free to just come for the dance! ANYONE is welcome so be sure to bring a friend :)
-
-Dance Prices: Stay tuned!!! ",
+    Open Dance: 8pm-10pm
+    The fun starts at 8pm for open dancing! If you do the lesson series, it includes admission into the dance so it would be an awesome perk! Or feel free to just come for the dance! ANYONE is welcome so be sure to bring a friend :)
+    Dance Prices: Stay tuned!!! ",
  url:"http://www.naptownstomp.org/", facebook_url:"https://www.facebook.com/events/1964431423781094/"})
  scramble_light_blues = Event.create({name:"Scramble Light Blues",organizer:"Ball State Swing Society", date:"2016-3-18",address:"Muncie, Indiana",price:"0.00",event_type:"Workshop",dance_style:"Blues",
    description:"Mark you calendars! Details to come", url:"https://www.facebook.com/Ball-State-Swing-Society-355800474435780/", facebook_url:"https://www.facebook.com/events/1477683472562070/"})
