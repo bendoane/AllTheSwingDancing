@@ -82,12 +82,14 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="external-event-site-button">
-            <%= button_to "Event Home Site", @event.url, class: "btn btn-standard btn-lg", method: :get%>
+            <%= button_to "Event Home Site", @event.url, :target => "_blank", class: "btn btn-standard btn-lg"%>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="facebook-link-to-event">
-          <%=link_to image_tag("facebook_blu.png"), @event.facebook_url, class: "btn btn-standard btn-lg", method: :get%>
+          <%=link_to "#{@event.facebook_url}", :target => "_blank",class: "btn btn-standard btn-lg" do %>
+            <%=image_tag("facebook_blu.png")%>
+            <%end%>
           Find it on Facebook!
         </div>
       </div>
