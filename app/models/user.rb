@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :attendances, dependent: :destroy
   has_many :made, :class_name => "Event"
   serialize :omniauth_data, JSON
+  has_and_belongs_to_many :roles
 
   #For Authlogic
   acts_as_authentic do |configuration|
@@ -22,6 +23,12 @@ class User < ActiveRecord::Base
     user.reset_persistence_token! #set persistence_token else sessions will not be created
     user
   end
+  #Declarative Auth
+  def role_symbols
+    roles.map do |role|
+      role.name.underscore.to_sym
+    end
+  end
 
   def full_name
     return "#{self.first_name} #{self.last_name}"
@@ -31,5 +38,10 @@ class User < ActiveRecord::Base
     self.events.include?(event)
   end
 
+
+
+  def role_symbols
+    (roles || []).map {|r| r.title.to_sym}
+  end
 
 end

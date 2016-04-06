@@ -1,0 +1,29 @@
+-@events.each_slice(4) do |four|
+  .row
+    - four.each do |event|
+      .col-xs-3.event-tabs
+        .panel.panel-default
+          <!--Heading-->
+          .panel-heading.panel-title
+            .event-tab
+              = link_to truncate(event.name, :length => 30), event
+              - if event.user == current_user && current_user != nil
+                .glyphicon.glyphicon-flag
+          <!--Body-->
+          .panel-body.main
+            = event.address
+            %h4.event-date
+              = event.date.strftime("%b %d")
+            = event.dance_style
+            = event.event_type
+          <!--Bottom-->
+          .panel-heading.panel-bottom
+            - if event.event_image
+              .footer-with-icon
+                = image_tag attachment_url(event, :event_image), class: "img-responsive event-image-thumbnail"
+            - if current_user
+              = link_to attendance_status_check_event_path(event), method: :put do
+                - if current_user.attending?(event) == true
+                  .glyphicon.glyphicon-ok
+                - else
+                  .glyphicon.glyphicon-remove

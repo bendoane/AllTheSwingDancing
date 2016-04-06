@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  filter_resource_access
 
   def index
     @user = current_user

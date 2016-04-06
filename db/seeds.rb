@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+roles = Role.create([
+  {title: 'admin'},
+  {title: 'user'}
+]) if Role.count == 0
+
 example_event1 = Event.create({name:"This Example Event!",organizer:"Naptown Stomp",date:"2016-12-17",address:"Indianapolis, Indiana",price:"30.00",event_type:"Workshop",dance_style:"Lindy",
   description:"An example dance event.", url:"www.alltheswingdancing.com", facebook_url:"www.facebook.com"})
 
