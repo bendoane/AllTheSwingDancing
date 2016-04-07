@@ -112,7 +112,7 @@
            js.src = "//connect.facebook.net/en_US/sdk.js";
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
-      
+
          function testAPI() {
            console.log('Welcome!  Fetching your information.... ');
            FB.api('/me', function(response) {
@@ -126,16 +126,16 @@
     = yield
     %br/
     %br/
-  %footer
-    %nav#footer.navbar.navbar-default.navbar-fixed-bottom
-      AllTheSwingDancing™ ©2015 by
-      %a{:href => "https://www.linkedin.com/in/ben-doane-b9040348"} Ben Doane
-      || Proud
-      %a{:href => "https://www.theironyard.com/locations/indianapolis.html"} Iron Yard
-      Final Project
-      || #{link_to "Privacy Policy", info_privacy_policy_path}
-      - if current_user
-        - if current_user.username != nil
-          ||  Logged in as #{current_user.username.upcase}
-        - elsif current_user.first_name
-          ||  Logged in as #{current_user.first_name.upcase}
+    %footer
+      %nav#footer.navbar.navbar-default.navbar-fixed-bottom
+        AllTheSwingDancing™ ©2015 by
+        %a{:href => "https://www.linkedin.com/in/ben-doane-b9040348"} Ben Doane
+        || Proud
+        %a{:href => "https://www.theironyard.com/locations/indianapolis.html"} Iron Yard
+        Final Project
+        || #{link_to "Privacy Policy", info_privacy_policy_path}
+        - if current_user
+          - if current_user.username != nil
+            ||  Logged in as #{current_user.username.upcase}
+          - elsif current_user.first_name
+            ||  Logged in as #{current_user.first_name.upcase}

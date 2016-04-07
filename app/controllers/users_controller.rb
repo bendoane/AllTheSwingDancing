@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @role = Role.new
+    @role.title = "user"
+    @user.roles << @role
     @user.save!
     redirect_to root_url
   end

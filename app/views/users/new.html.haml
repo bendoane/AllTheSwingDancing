@@ -1,6 +1,6 @@
 .container
-  %h1 Welcome to All the Swing Dancing!
-  %h4 Let's get you signed up!
+  %h1 Welcome to All the Swing Dancing
+  %h4 Let's get you signed up
   %br/
   .col-xs-6
     = bootstrap_form_for(@user) do |f|
@@ -12,7 +12,7 @@
         = f.password_field :password
       .field
         = f.password_field :password_confirmation
-      = f.submit
+      = f.submit "Create my account"
   .col-xs-6
     .social_network_authorize
       .social-icons

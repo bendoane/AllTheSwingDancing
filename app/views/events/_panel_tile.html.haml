@@ -7,6 +7,7 @@
           .panel-heading.panel-title
             .event-tab
               = link_to truncate(event.name, :length => 30), event
+              %br/
               - if event.user == current_user && current_user != nil
                 .glyphicon.glyphicon-flag
           <!--Body-->
