@@ -4,15 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   before_action :current_user
-
-private
-  def current_user_session
-    if defined?(@current_user_session)
-        return @current_user_session
-      else
-        @current_user_session = Session.find
-    end
-  end
+  before_filter {|c| Authorization.current_user = c.current_user}
 
   def current_user
     if defined?(@current_user)
@@ -24,5 +16,16 @@ private
       @current_user = current_user_session && current_user_session.record
     end
   end
+
+private
+  def current_user_session
+    if defined?(@current_user_session)
+        return @current_user_session
+      else
+        @current_user_session = Session.find
+    end
+  end
+
+
 
 end

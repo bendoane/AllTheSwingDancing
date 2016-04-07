@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  filter_access_to :all
+  filter_access_to :show, :edit, :update, :destroy, :attendance_status_check, :attribute_check => true
 
   def index
     @user = current_user

@@ -13,6 +13,9 @@ gem "koala", "~> 2.2"
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem 'traceroute'
+gem 'declarative_authorization', github: "stffn/declarative_authorization"
+gem 'haml'
+gem 'erb2haml', :group => :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -63,6 +66,3 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
-
-ruby "2.2.3"

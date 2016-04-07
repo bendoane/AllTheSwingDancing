@@ -1,0 +1,141 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title All the Swing
+    %meta{:charset => "UTF-8"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %link{:href => "https://fonts.googleapis.com/css?family=Lobster", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Josefin+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    / Google Maps Script
+    %script{:src => "//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="}
+    %script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"}
+    / End
+  %body
+    / FLASH NOTICES
+    - flash.each do |name, msg|
+      .alert.alert-warning{:role => "alert", :style => "text-align:center;"}
+        = content_tag :div, msg, class: name
+    / END
+    %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          .title-with-icon
+            = image_tag "alltheswingdancing2x50white.png", class: "img-responsive"
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a#web-app-title.navbar-brand{:href => root_url} All the Swing Dancing
+        / Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            - unless current_user
+              %li
+                = link_to "Sign Up!", new_user_path
+            - if current_user
+              - if current_page?("/info/my_events")
+                %li
+                  = link_to "All Events", root_url
+              - else
+                %li
+                  = link_to "My Events", info_my_events_path
+              %li
+                = link_to "Add Event", new_event_path
+            %li
+              = link_to "About", info_about_path
+            /
+              <li>
+              <haml_loud>link_to &quot;Contact&quot;, info_contact_path</haml_loud>
+              </li>
+            - unless current_user
+              %li
+                = link_to "Login", new_session_path
+            - if current_user
+              %li
+                = link_to "Log Out", session_path(@current_user), method: :delete
+        / /.navbar-collapse
+      / /.container
+    / Facebook login stuffs
+    :javascript
+      // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+          console.log('statusChangeCallback');
+          console.log(response);
+          // The response object is returned with a status field that lets the
+          // app know the current login status of the person.
+          // Full docs on the response object can be found in the documentation
+          // for FB.getLoginStatus().
+          if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            testAPI();
+          } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+          } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into Facebook.';
+          }
+        }
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+          });
+        }
+        window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '{1667925190116529}',
+          cookie     : true,  // enable cookies to allow the server to access
+                              // the session
+          xfbml      : true,  // parse social plugins on this page
+          version    : 'v2.2' // use version 2.2
+       });
+       FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+       });
+       };
+       // Load the SDK asynchronously
+         (function(d, s, id) {
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) return;
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+         function testAPI() {
+           console.log('Welcome!  Fetching your information.... ');
+           FB.api('/me', function(response) {
+             console.log('Successful login for: ' + response.name);
+             document.getElementById('status').innerHTML =
+               'Thanks for logging in, ' + response.name + '!';
+           });
+         }
+    %login-button{:onlogin => "checkLoginState();", :scope => "public_profile,email"}
+    #status
+    = yield
+    %br/
+    %br/
+    %footer
+      %nav#footer.navbar.navbar-default.navbar-fixed-bottom
+        AllTheSwingDancing™ ©2015 by
+        %a{:href => "https://www.linkedin.com/in/ben-doane-b9040348"} Ben Doane
+        || Proud
+        %a{:href => "https://www.theironyard.com/locations/indianapolis.html"} Iron Yard
+        Final Project
+        || #{link_to "Privacy Policy", info_privacy_policy_path}
+        - if current_user
+          - if current_user.username != nil
+            ||  Logged in as #{current_user.username.upcase}
+          - elsif current_user.first_name
+            ||  Logged in as #{current_user.first_name.upcase}

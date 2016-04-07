@@ -1,0 +1,130 @@
+/ Event Title
+.container
+  .row
+    .col-xs-10
+      %h1#event-title= @event.name
+      .owner-options
+        .row
+          .col-xs-3.info-points
+            - if @event.user != nil
+              Added by:
+              = @event.user.username
+          .col-xs-3.info-points
+            - if permitted_to?(:edit, @event)
+              %i.glyphicon.glyphicon-flag
+              Owner Options:
+          .col-xs-2
+            - if permitted_to?(:edit, @event)
+              = link_to edit_event_path(@event) do
+                %i.glyphicon.glyphicon-cog Edit
+          .col-xs-2
+            - if permitted_to?(:destroy, @event)
+              = link_to event_path(@event), method: :delete do
+                %i.glyphicon.glyphicon-trash Delete
+      / Event overview heading
+      %hr
+        .col-xs-3
+          .info-points Event:
+          .info-points-data
+            = @event.dance_style
+            = @event.event_type
+        .col-xs-3
+          - if number_to_currency(@event.price) == "$0.00"
+            .info-points Price:
+            .info-points-data Free!
+          - else
+            .info-points Price:
+            .info-points-data= number_to_currency(@event.price)
+        .col-xs-3
+          .info-points Location:
+          .info-points-data= @event.address
+        .col-xs-3
+          .info-points Host:
+          .info-points-data= @event.organizer
+    / Mini-Panel
+    .col-xs-2
+      .panel.panel-default
+        - if @user
+          .panel-heading
+            Status:
+            = link_to info_my_events_path do
+              - if @user.attending?(@event)==true
+                %i.glyphicon.glyphicon-ok
+              - else
+                %i.glyphicon.glyphicon-remove
+        .panel-body
+          .event-date
+            = @event.date.strftime("%b %d")
+        #panel-bottom.panel-heading
+  / Event Body
+  .row
+    .col-xs-8
+      %hr
+        .event-description-body
+          %p= @event.description
+    .col-xs-4
+      .event-description-sidebar
+        = image_tag attachment_url(@event, :event_image), class: "img-responsive", id: "full-event-image"
+    .row
+      .col-xs-6
+        .external-event-site-button
+          = button_to "Event Home Site", @event.url, :target => "_blank", class: "btn btn-standard btn-lg"
+      .col-xs-6
+        .facebook-link-to-event
+          = link_to @event.facebook_url, :target => "_blank", class: "btn btn-standard btn-lg" do
+            = image_tag("facebook_blu.png")
+          Find it on Facebook!
+  %hr
+    / Resposive maps via GOOGLE
+    %h3 Event Location Map
+    %div{:style => "width: 400px;"}
+      #map{:style => "width: 950px; height: 400px;"}
+    :javascript
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(#{raw @hash.to_json});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(14);
+      });
+    / END
+    / Geocoding Nearby Locationa
+    %hr
+      %h3 Other Regional Events
+      %ul
+        - @event.location.nearbys(200).each_slice(4) do |four|
+          .row
+            - four.each do |single_event|
+              #event-tabs.col-xs-3
+                .panel.panel-default
+                  / Heading
+                  #panel-title.panel-heading
+                    %h4.event-tab
+                      .row
+                        = link_to truncate(single_event.event.name, :length => 30), single_event.event
+                  / Body
+                  .panel-body.main
+                    - if single_event.distance.round(0) == 20.0
+                      Also here in town!
+                    - else
+                      = single_event.distance.round(0)
+                      miles away
+                      %br
+                      at #{single_event.event.address}
+                      %br
+                      %h4.event-date
+                      = single_event.event.date.strftime("%b %d")
+                      = single_event.event.dance_style
+                      = single_event.event.event_type
+                  / Bottom
+                  #panel-bottom.panel-heading
+                    - if single_event.event.event_image
+                      .footer-with-icon
+                        = image_tag attachment_url(single_event.event, :event_image), class: "img-responsive event-image-thumbnail"
+                    - if @user
+                      Status:
+                      = link_to attendance_status_check_event_path(single_event.event), method: :put do
+                        - if @user.attending?(single_event.event)
+                          %i.glyphicon.glyphicon-ok
+                        - else
+                          %i.glyphicon.glyphicon-remove
