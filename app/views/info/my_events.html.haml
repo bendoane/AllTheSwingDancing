@@ -1,9 +1,36 @@
 .container
+  %hr/
   %h1#web-app-title{:style => "font-size:42px;"} My Events
-  Helping keep track of the events you want to go to!
   %hr/
   / Events owned by Users
   / Should show up regardless of going status
-  / 
-  = render "events/panel_tile"
+  /
+  .col-xs-8
+    = render partial: "events/panel_tile"
+  .col-xs-4
+    %h3#web-app-title
+      Next Upcoming Event
+    .panel.panel-default
+      <!--Heading-->
+      .panel-heading.panel-title
+        #nearest-event-title
+          = link_to @nearest_event.name, @nearest_event
+          %br/
+          - if @nearest_event.user == current_user && current_user != nil
+            .glyphicon.glyphicon-flag
+      <!--Body-->
+      .panel-body.main
+        = @nearest_event.city
+        = @nearest_event.state
+        %h4.event-date
+          = @nearest_event.date.strftime("%b %d")
+        %p
+          = @nearest_event.date.strftime("%Y")
+        = @nearest_event.dance_style
+        = @nearest_event.event_type
+      <!--Bottom-->
+      .panel-heading.panel-bottom
+        - if @nearest_event.event_image
+          .footer-with-icon
+            = image_tag attachment_url(@nearest_event, :event_image), class: "img-responsive event-image-thumbnail"
   %br/

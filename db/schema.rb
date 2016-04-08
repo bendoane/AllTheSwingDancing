@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406195112) do
+ActiveRecord::Schema.define(version: 20160407235015) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20160406195112) do
     t.text     "description"
     t.string   "url"
     t.string   "facebook_url"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "locations", force: :cascade do |t|

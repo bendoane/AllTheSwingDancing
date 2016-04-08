@@ -6,7 +6,12 @@ authorization do
 
   role :admin do
     includes :guest
-    has_permission_on :events, :to => [:new, :create, :edit, :update, :attendance_status_check, :destroy]
+    has_permission_on :events, :to => [:new, :create, :edit, :update, :destroy]
+  end
+
+  role :organization do
+    includes :guest
+    has_permission_on :events, :to => [:new, :create, :edit, :update, :destroy]
   end
 
   role :user do

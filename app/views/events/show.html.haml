@@ -88,43 +88,4 @@
         handler.getMap().setZoom(14);
       });
     / END
-    / Geocoding Nearby Locationa
-    %hr
-      %h3 Other Regional Events
-      %ul
-        - @event.location.nearbys(200).each_slice(4) do |four|
-          .row
-            - four.each do |single_event|
-              #event-tabs.col-xs-3
-                .panel.panel-default
-                  / Heading
-                  #panel-title.panel-heading
-                    %h4.event-tab
-                      .row
-                        = link_to truncate(single_event.event.name, :length => 30), single_event.event
-                  / Body
-                  .panel-body.main
-                    - if single_event.distance.round(0) == 20.0
-                      Also here in town!
-                    - else
-                      = single_event.distance.round(0)
-                      miles away
-                      %br
-                      at #{single_event.event.address}
-                      %br
-                      %h4.event-date
-                      = single_event.event.date.strftime("%b %d")
-                      = single_event.event.dance_style
-                      = single_event.event.event_type
-                  / Bottom
-                  #panel-bottom.panel-heading
-                    - if single_event.event.event_image
-                      .footer-with-icon
-                        = image_tag attachment_url(single_event.event, :event_image), class: "img-responsive event-image-thumbnail"
-                    - if @user
-                      Status:
-                      = link_to attendance_status_check_event_path(single_event.event), method: :put do
-                        - if @user.attending?(single_event.event)
-                          %i.glyphicon.glyphicon-ok
-                        - else
-                          %i.glyphicon.glyphicon-remove
+    = render partial: "regional_events"
