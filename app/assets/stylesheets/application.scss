@@ -57,26 +57,6 @@
  .error-404 {
      font-size: 100px;
  }
-
- /* Pricing Page Styles */
-
- .price {
-     display: block;
-     font-size: 50px;
-     line-height: 50px;
- }
-
- .price sup {
-     top: -20px;
-     left: 2px;
-     font-size: 20px;
- }
-
- .period {
-     display: block;
-     font-style: italic;
- }
-
  /* Footer Styles */
 
  footer {
@@ -113,6 +93,8 @@
 #web-app-title{
   font-family: 'Lobster', cursive;
   font-size: 30px;
+  clear: both;
+  text-align: center;
 }
 .title-with-icon{
   display: inline-block;
@@ -139,6 +121,9 @@
   font-family: 'Lobster', cursive;
   font-size: 50px;
 }
+.panel.panel-default{
+  box-shadow: -7px 7px 5px #888888;
+}
 .panel-heading{
   text-align: center;
 }
@@ -158,20 +143,38 @@
   font-weight: 700;
   text-shadow: -1px 1px #9d9d9d;
 }
+#nearest-event-title a{
+  color: black;
+  font-weight: 700;
+  font-size: 35px;
+  margin: none;
+}
+#nearest-event-title :hover{
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  text-shadow: -1px 1px #9d9d9d;
+}
 .panel-body.main{
   text-align: center;
-  min-height: 145px;
+  min-height: 120px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.panel-body.main p{
+  margin: 0;
 }
 .event-date{
   text-align: center;
   font-weight: 700;
   font-size: 30px;
   vertical-align: middle;
+  margin-bottom: 0px;
 }
 .panel-bottom{
   margin: none;
   text-align: center;
-  min-height: 70px;
+  min-height: 10px;
 }
 .footer-with-icon{
   display: inline-block;

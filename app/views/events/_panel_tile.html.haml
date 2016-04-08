@@ -12,9 +12,12 @@
                 .glyphicon.glyphicon-flag
           <!--Body-->
           .panel-body.main
-            = event.address
+            = event.city
+            = event.state
             %h4.event-date
               = event.date.strftime("%b %d")
+            %p
+              = event.date.strftime("%Y")
             = event.dance_style
             = event.event_type
           <!--Bottom-->

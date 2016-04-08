@@ -5,23 +5,33 @@
     .field
       = f.text_field :organizer
     .field
-      = f.text_field :address, placeholder: "Where's this at?"
-    .field
-      = f.date_field :date
-    .field
-      = f.text_field :price, placeholder: "$ Dollars"
-    .field
-      = f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"], :include_blank => 'Select Type'
-    .field
-      = f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa", "Other"], :include_blank => 'Select Type'
+      = f.text_field :address, placeholder: "Street Address"
+    .col-xs-6
+      .field
+        = f.text_field :city, placeholder: "City"
+    .col-xs-6
+      .field
+        = f.text_field :state, placeholder: "State"
+    .col-xs-6
+      .field
+        = f.date_field :date
+    .col-xs-6
+      .field
+        = f.text_field :price, placeholder: "$ Dollars"
+    .col-xs-6
+      .field
+        = f.select :event_type, ["Workshop","Exchange","Evening Dance","Dance Camp","Special Event"], :include_blank => 'Select Type'
+    .col-xs-6
+      .field
+        = f.select :dance_style, ["Lindy Hop","Charleston","Shag","Blues","Boogie Woogie","Balboa", "Other"], :include_blank => 'Select Type'
     .field
       = f.text_area :description, placeholder: "Tell us a bit about this event!"
-    .field
-      = f.label :url, "External Event Website"
-      = f.text_field :url, placeholder: "Website for registration and info"
-    .field
-      = f.label :facebook_url, "Facebook Event Page"
-      = f.text_field :facebook_url, placeholder: "Website for registration and info"
+    .col-xs-6
+      .field
+        = f.text_field :url, placeholder: "Website for registration and info"
+    .col-xs-6
+      .field
+        = f.text_field :facebook_url, placeholder: "Facebook Event Page"
   #event-sidebar.col-xs-4
     %h3 Upload an Event Image
     %h5{:style => "font-style:italic;"} Pro-tip: square .png files with no background work best!
