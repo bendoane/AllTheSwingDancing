@@ -2,10 +2,12 @@
   .col-xs-8
     .field
       = f.text_field :name, placeholder:"Event Name - Displays only 30 characters on main page"
-    .field
-      = f.text_field :organizer
-    .field
-      = f.text_field :address, placeholder: "Street Address"
+    .col-xs-6
+      .field
+        = f.text_field :organizer
+    .col-xs-6
+      .field
+        = f.text_field :address, placeholder: "Street Address"
     .col-xs-6
       .field
         = f.text_field :city, placeholder: "City"
@@ -41,5 +43,7 @@
     #preview
       - if @event.event_image
         = image_tag attachment_url(@event, :event_image), width: 300
+  .col-xs-9
+  .col-xs-2
     #event-submit.actions
       = f.submit "Submit Event", class: "btn btn-standard btn-lg"

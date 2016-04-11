@@ -5,8 +5,7 @@
   / Events owned by Users
   / Should show up regardless of going status
   /
-  .col-xs-8
-    = render partial: "events/panel_tile"
+  -# NEXT UPCOMING EVENT PANEL
   .col-xs-4
     %h3#web-app-title
       Next Upcoming Event
@@ -34,3 +33,5 @@
           .footer-with-icon
             = image_tag attachment_url(@nearest_event, :event_image), class: "img-responsive event-image-thumbnail"
   %br/
+  .col-xs-8
+    = render partial: "events/panel_tile"

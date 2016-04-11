@@ -115,6 +115,7 @@
 #sign-in-well{
   display: inline;
   text-align: center;
+  clear: both;
 }
 // Page Panel info
 #event-title{
@@ -193,6 +194,10 @@
   font-size: 40px;
   color:#992600;
 }
+#pagination{
+  text-align: right;
+  font-size: 28px;
+}
 // Image upload
 #event-sidebar{
   position:relative;
@@ -202,10 +207,8 @@
   max-height: 80px;
 }
 #event-submit{
-  float:right;
-  position:absolute;
-  left:100px;
-  top:625px;
+  float: right;
+  clear: both;
 }
 #full-event-image{
   border-radius: 10px;
