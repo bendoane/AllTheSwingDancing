@@ -1,6 +1,6 @@
 .container
+  %h1#event-title Sign yourself up:
   .col-xs-6
-    %h1#event-title Sign yourself up:
     = bootstrap_form_for(@user) do |f|
       .field
         = f.text_field :username
@@ -12,10 +12,6 @@
         = f.password_field :password_confirmation
       = f.submit "Create my account"
   .col-xs-2
-    %br
-    %br
-    %br
-    %br
     .social_network_authorize
       .social-icons
         %h4 Or sign up via ⬇Facebook⬇
@@ -28,3 +24,6 @@
           - else
             = link_to image_tag("#{provider}_blk.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id"
         %h4 ⬆Click Here⬆
+  .col-xs-4
+    %h1#event-title Scene Registry
+    Want to register your scene, making it easier for people to find your local dance group? Click the link below!

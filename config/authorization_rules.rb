@@ -12,6 +12,7 @@ authorization do
   role :organization do
     includes :guest
     has_permission_on :events, :to => [:new, :create, :edit, :update, :destroy]
+    
   end
 
   role :user do

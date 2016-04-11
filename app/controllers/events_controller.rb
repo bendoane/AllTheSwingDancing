@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all.order("date ASC")
+    @events = @events.paginate(:page => params[:page], :per_page => 8)
     @mapevents = Event.all
     @hash = Gmaps4rails.build_markers(@mapevents) do |event, marker|
       marker.lat event.location.latitude
@@ -25,7 +26,7 @@ class EventsController < ApplicationController
       @event.users << current_user
       redirect_to root_url
     else
-      flash[:notice]="Looks like there were some errors. Let's check."
+      flash[:notice]="Looks like there were some errors. Let's double check."
       render :new
     end
   end

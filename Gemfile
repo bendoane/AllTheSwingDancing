@@ -16,6 +16,7 @@ gem 'traceroute'
 gem 'declarative_authorization', github: "stffn/declarative_authorization"
 gem 'haml'
 gem 'erb2haml', :group => :development
+gem 'will_paginate', '~> 3.0.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

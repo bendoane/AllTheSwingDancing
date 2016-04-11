@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :made, :class_name => "Event"
   serialize :omniauth_data, JSON
   has_and_belongs_to_many :roles
+  has_many :dancers, foreign_key: "organization_id", class_name: "User"
+  belongs_to :organization, class_name: "User"
 
   #For Authlogic
   acts_as_authentic do |configuration|

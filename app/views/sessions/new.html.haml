@@ -1,5 +1,6 @@
 .container
-  %h1 Log in!
+  %h1#event-title Log in!
+  %br/
   .col-xs-6
     = bootstrap_form_for(@user_session) do |f|
       .field
@@ -8,20 +9,23 @@
         = f.password_field :password, placeholder: "password"
       = f.submit "Sign In!"
     %br/
-  / Omni stuff
-  .social_network_authorize
-    .social-icons
-      %h4 Or Log in using Facebook!
-      - ["facebook"].each do |provider|
-        / This is left in this formatting for ease of adding twitter and google
-        - if provider !="open_id"
-          = link_to "/auth/#{provider}" do                                                                                                                         |
-            image_tag("facebook_blk.png", onmouseover: "this.src='#{asset_path('facebook_blu.png')}'", onmouseout: "this.src='#{asset_path('facebook_blk.png')}'") |
-            end                                                                                                                                                    |
-        - else
-          = link_to image_tag("#{provider}_blk.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id"
-  / END
-  #sign-in-well.col-xs-12
+  .col-xs-2
+    / Omni stuff
+    .social_network_authorize
+      .social-icons
+        %h4 Log in via
+        %h4⬇Facebook⬇
+        - ["facebook"].each do |provider|
+          / This is left in this formatting for ease of adding twitter and google
+          - if provider !="open_id"
+            = link_to "/auth/#{provider}" do                                                                                                                         |
+              image_tag("facebook_blk.png", onmouseover: "this.src='#{asset_path('facebook_blu.png')}'", onmouseout: "this.src='#{asset_path('facebook_blk.png')}'") |
+              end                                                                                                                                                    |
+          - else
+            = link_to image_tag("#{provider}_blk.png"), "/auth/#{provider}/openid_url=https://www.google.com/accounts/o8/id"
+        %h4 ⬆Click Here⬆
+    / END
+  #sign-in-well.col-xs-6
     %h3.well
       New to All the Swing Dancing?
       %button.btn.btn-default.btn-md

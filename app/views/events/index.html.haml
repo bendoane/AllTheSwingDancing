@@ -2,17 +2,18 @@
   %hr/
   %h1#web-app-title{:style => "font-size:42px; text-align:center;"} All Events
   %hr/
-  .col-xs-8
-    = render partial: "panel_tile"
   .col-xs-4
     %h3#web-app-title
       Filter your search
     [Information regarding the filter will go here.]
+  .col-xs-8
+    = render partial: "panel_tile"
+
 
   / Resposive maps via GOOGLE
   %h1#web-app-title{:style => "font-size:42px; text-align:center;"}
     %hr/
-    All Events Map
+    All Event Locations
   %hr/
   %div{:style => "width: 400px;"}
     #map{:style => "width: 950px; height: 400px;"}
