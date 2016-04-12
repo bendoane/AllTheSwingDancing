@@ -5,7 +5,11 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all.order("date ASC")
-    @events = @events.paginate(:page => params[:page], :per_page => 8)
+    @events = @events.search(params[:search]).paginate(:page => params[:page], :per_page => 8)
+      if @events.size.zero?
+        flash[:notice]="No match was found."
+        redirect_to root_url
+      end
     @mapevents = Event.all
     @hash = Gmaps4rails.build_markers(@mapevents) do |event, marker|
       marker.lat event.location.latitude

@@ -3,10 +3,14 @@
   %h1#web-app-title{:style => "font-size:42px; text-align:center;"} All Events
   %hr/
   .col-xs-4
-    %h3#web-app-title
-      Filter your search
-    [Information regarding the filter will go here.]
+    / ADVERT SPACE HERE
   .col-xs-8
+    #web-app-title{:style => "font-size:18px; text-align:right;"}
+      Search by Event Name
+      = bootstrap_form_for events_path, :method => 'get' do
+        = text_field_tag :search, params[:search]
+        = submit_tag "Search", :name => nil
+    %br/
     = render partial: "panel_tile"
 
 
