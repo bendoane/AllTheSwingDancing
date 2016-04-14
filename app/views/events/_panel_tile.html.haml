@@ -28,8 +28,10 @@
             - if current_user
               = link_to attendance_status_check_event_path(event), method: :put do
                 - if current_user.attending?(event) == true
-                  .glyphicon.glyphicon-ok
+                  .going
+                    .glyphicon.glyphicon-ok-sign
                 - else
-                  .glyphicon.glyphicon-remove
+                  .not-going
+                    .glyphicon.glyphicon-remove
 #pagination
   = will_paginate @events

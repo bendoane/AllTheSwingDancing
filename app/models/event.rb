@@ -27,6 +27,14 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
   after_save do |event|
     event.location = Location.new
     event.location.address = event.address + " " + event.city + "," + event.state
