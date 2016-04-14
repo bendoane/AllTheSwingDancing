@@ -1,21 +1,27 @@
 .container
   %hr/
-  %h1#web-app-title{:style => "font-size:42px; text-align:center;"} All Events
+  .row
+    .col-xs-4
+    .col-xs-4
+      %h1.title-section All Events
+    .col-xs-4
+      .title-section{:style => "font-size:18px; text-align:right;"}
+        Search by Event Name
+        = bootstrap_form_for events_path, :method => 'get' do
+          = text_field_tag :search, params[:search]
+          = submit_tag "Search", :name => nil
   %hr/
-  .col-xs-4
+
+  .col-xs-3
+    .advertising-space
+    .advertising-space
     / ADVERT SPACE HERE
-  .col-xs-8
-    #web-app-title{:style => "font-size:18px; text-align:right;"}
-      Search by Event Name
-      = bootstrap_form_for events_path, :method => 'get' do
-        = text_field_tag :search, params[:search]
-        = submit_tag "Search", :name => nil
-    %br/
+  .col-xs-9
     = render partial: "panel_tile"
 
 
   / Resposive maps via GOOGLE
-  %h1#web-app-title{:style => "font-size:42px; text-align:center;"}
+  %h1.title-section
     %hr/
     All Event Locations
   %hr/

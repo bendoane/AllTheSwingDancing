@@ -105,6 +105,12 @@
   color: #9d9d9d;
 }
 // Page general info
+.title-section{
+  font-family: 'Lobster', cursive;
+  font-size: 42px;
+  clear: both;
+  text-align: center;
+}
 .info-points{
   font-weight: 700;
   text-align: center;
@@ -116,6 +122,13 @@
   display: inline;
   text-align: center;
   clear: both;
+}
+// Adverts
+.advertising-space{
+  border: solid #cccccc 1px;
+  border-radius: 5px;
+  min-height: 300px;
+  margin: 10px 0 10px 0;
 }
 // Page Panel info
 #event-title{
@@ -177,6 +190,20 @@
   text-align: center;
   min-height: 10px;
 }
+
+ //Still messing with this functionality. It is not finalized, and will change
+.going{
+  background-color: #e6ffe6;
+  border: solid #cccccc 1px;
+  border-radius: 5px;
+}
+.not-going{
+  background-color: #ffe6e6;
+  border: solid #cccccc 1px;
+  border-radius: 5px;
+}
+// end section above
+//
 .footer-with-icon{
   display: inline-block;
 }
@@ -186,7 +213,7 @@
   border-radius: 4px;
   float:left;
 }
-.glyphicon-ok{
+.glyphicon-ok-sign{
   font-size: 40px;
   color:green;
 }

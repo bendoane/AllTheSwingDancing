@@ -1,14 +1,14 @@
 .container
   %hr/
-  %h1#web-app-title{:style => "font-size:42px;"} My Events
+  %h1.title-section My Events
   %hr/
   / Events owned by Users
   / Should show up regardless of going status
   /
   -# NEXT UPCOMING EVENT PANEL
-  .col-xs-4
-    %h3#web-app-title
-      Next Upcoming Event
+  .col-xs-3
+    %h3.title-section{:style => "font-size:24px;"}
+      Upcoming Next
     .panel.panel-default
       <!--Heading-->
       .panel-heading.panel-title
@@ -33,5 +33,5 @@
           .footer-with-icon
             = image_tag attachment_url(@nearest_event, :event_image), class: "img-responsive event-image-thumbnail"
   %br/
-  .col-xs-8
+  .col-xs-9
     = render partial: "events/panel_tile"
