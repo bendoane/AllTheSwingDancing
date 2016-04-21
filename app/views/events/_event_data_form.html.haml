@@ -34,7 +34,7 @@
     .col-xs-6
       .field
         = f.text_field :facebook_url, placeholder: "Facebook Event Page"
-  #event-sidebar.col-xs-4
+  .event-sidebar.col-xs-4
     %h3 Upload an Event Image
     %h5{:style => "font-style:italic;"} Pro-tip: square .png files with no background work best!
     #event_image_thumbnail
@@ -45,5 +45,5 @@
         = image_tag attachment_url(@event, :event_image), width: 300
   .col-xs-9
   .col-xs-2
-    #event-submit.actions
-      = f.submit "Submit Event", class: "btn btn-standard btn-lg"
+    .event-submit.actions
+      = f.submit "Submit", class: "btn btn-standard btn-lg"

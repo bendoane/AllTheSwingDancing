@@ -34,14 +34,14 @@ $(function() {
 });
 
 // Still toying with the button functionality for "going" or "not going"
-$(document).ready(function () {
-  $('.panel-heading.panel-bottom').click(function (item) {
-    $(item.currentTarget).toggleClass('going');
-    	if (item.currentTarget.innerHTML == "Going") {
-				item.currentTarget.innerHTML = "Not Going";
-			} else {
-				item.currentTarget.innerHTML = "Going";
-			};
-    $(item.currentTarget).parent('panel-heading.panel-bottom').toggleClass('going');
-  });
-});
+// $(document).ready(function () {
+//   $('.panel-heading.panel-bottom').click(function (item) {
+//     $(item.currentTarget).toggleClass('going');
+//     	if (item.currentTarget.innerHTML == "Going") {
+// 				item.currentTarget.innerHTML = "Not Going";
+// 			} else {
+// 				item.currentTarget.innerHTML = "Going";
+// 			};
+//     $(item.currentTarget).parent('panel-heading.panel-bottom').toggleClass('going');
+//   });
+// });
