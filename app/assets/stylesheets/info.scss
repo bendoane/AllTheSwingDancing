@@ -1,3 +1,21 @@
 // Place all the styles related to the info controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.event-description-body{
+  min-height: 100px;
+}
+.external-event-site-button{
+}
+.event-description-sidebar{
+  min-height: 150px;
+  align-items: center;
+  text-align: center;
+}
+.facebook-link-to-event{
+  display: inline-block;
+  float:right;
+}
+.facebook-link-to-event img{
+  max-width: 40px;
+  display: inline-block;
+}

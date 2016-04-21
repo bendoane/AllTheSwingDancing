@@ -5,19 +5,16 @@
       %h1#event-title= @event.name
       .owner-options
         .row
-          .col-xs-3.info-points
+          .col-xs-3.info-points-data
             - if @event.user != nil
               Added by:
               = @event.user.username
-          .col-xs-3.info-points
+            %br/
             - if permitted_to?(:edit, @event)
               %i.glyphicon.glyphicon-flag
               Owner Options:
-          .col-xs-2
-            - if permitted_to?(:edit, @event)
               = link_to edit_event_path(@event) do
                 %i.glyphicon.glyphicon-cog Edit
-          .col-xs-2
             - if permitted_to?(:destroy, @event)
               = link_to event_path(@event), method: :delete do
                 %i.glyphicon.glyphicon-trash Delete
@@ -43,40 +40,42 @@
           .info-points-data= @event.organizer
     / Mini-Panel
     .col-xs-2
-      .panel.panel-default
-        - if @user
-          .panel-heading
-            Status:
-            = link_to info_my_events_path do
-              - if @user.attending?(@event)==true
-                %i.glyphicon.glyphicon-ok
-              - else
-                %i.glyphicon.glyphicon-remove
+      .panel.panel-default.mini-panel
+        .panel-heading
         .panel-body
           .event-date
             = @event.date.strftime("%b %d")
-        #panel-bottom.panel-heading
+        .panel-bottom.panel-heading.mini-panel-bottom
+          - if @user
+            .panel-heading
+              Status:
+              = link_to attendance_status_check_event_path(@event), method: :put do
+                - if current_user.attending?(@event) == true
+                  .going
+                    .glyphicon.glyphicon-ok-sign
+                - else
+                  .not-going
+                    .glyphicon.glyphicon-remove
   / Event Body
   .row
+    %hr
     .col-xs-8
-      %hr
-        .event-description-body
-          %p= @event.description
+      .event-description-body
+        %p= @event.description
     .col-xs-4
       .event-description-sidebar
         = image_tag attachment_url(@event, :event_image), class: "img-responsive", id: "full-event-image"
-    .row
-      .col-xs-6
-        .external-event-site-button
-          = button_to "Event Home Site", @event.url, :target => "_blank", class: "btn btn-standard btn-lg"
-      .col-xs-6
-        .facebook-link-to-event
-          = link_to @event.facebook_url, :target => "_blank", class: "btn btn-standard btn-lg" do
-            = image_tag("facebook_blu.png")
-          Find it on Facebook!
+  .row
+    .container
+      .facebook-link-to-event
+        = link_to @event.facebook_url, :target => "_blank" do
+          = image_tag("facebook_blu.png")
+      .external-event-site-button
+        = button_to "#{@event.name} website", @event.url, :target => "_blank", class: "btn btn-standard btn-lg"
+
   %hr
     / Resposive maps via GOOGLE
-    %h3 Event Location Map
+    %h3.title-section Event Location Map
     %div{:style => "width: 400px;"}
       #map{:style => "width: 950px; height: 400px;"}
     :javascript

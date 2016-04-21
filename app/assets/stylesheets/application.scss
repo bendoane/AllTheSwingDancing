@@ -25,14 +25,6 @@
    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
  }
 
- .img-portfolio {
-     margin-bottom: 30px;
- }
-
- .img-hover:hover {
-     opacity: 0.8;
- }
-
  /* Home Page Carousel */
 
  header.carousel {
@@ -68,8 +60,9 @@
  #footer{
    border-top: 5px;
    min-height: 20px;
+   background-color: #262626;
+   color: #999999;
  }
-
  /* Responsive Styles */
 
  @media(max-width:991px) {
@@ -100,10 +93,6 @@
   display: inline-block;
   margin-top: 8px;
 }
-#signed_in:hover{
-  text-decoration: none;
-  color: #9d9d9d;
-}
 // Page general info
 .title-section{
   font-family: 'Lobster', cursive;
@@ -114,6 +103,7 @@
 .info-points{
   font-weight: 700;
   text-align: center;
+  font-size: 18px;
 }
 .info-points-data{
   text-align: center;
@@ -122,6 +112,24 @@
   display: inline;
   text-align: center;
   clear: both;
+}
+input[type=submit] {
+    padding:5px 15px;
+    background: #ccc;
+    border:1px solid black;
+    cursor:pointer;
+    border-radius: 5px;
+    transition-property: background, box-shadow;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+input[type=submit]:hover {
+    padding:5px 15px;
+    background: #ccffff;
+    border:1px solid black;
+    cursor:pointer;
+    border-radius: 5px;
+    box-shadow: -2px 2px 2px #888888;
 }
 // Adverts
 .advertising-space{
@@ -190,17 +198,25 @@
   text-align: center;
   min-height: 10px;
 }
+.mini-panel{
+  margin-top: 25px;
+}
+.mini-panel-bottom{
+  padding: 0 0 0 0;
+}
 
  //Still messing with this functionality. It is not finalized, and will change
 .going{
   background-color: #e6ffe6;
   border: solid #cccccc 1px;
   border-radius: 5px;
+  background-size: cover;
 }
 .not-going{
   background-color: #ffe6e6;
   border: solid #cccccc 1px;
   border-radius: 5px;
+  background-size: cover;
 }
 // end section above
 //
@@ -225,26 +241,13 @@
   text-align: right;
   font-size: 28px;
 }
-// Image upload
-#event-sidebar{
-  position:relative;
-}
-#preview{
-  max-width:40px;
-  max-height: 80px;
-}
-#event-submit{
-  float: right;
-  clear: both;
-}
-#full-event-image{
-  border-radius: 10px;
-}
+
 // Events Full Info Page
 .event-description-body{
   min-height: 100px;
 }
 .external-event-site-button{
+  display: inline-block;
 }
 .event-description-sidebar{
   min-height: 150px;
@@ -253,11 +256,18 @@
 }
 .facebook-link-to-event{
   display: inline-block;
-  float:right;
+  transition-property: box-shadow;
+  transition-duration: .3s;
+  transition-timing-function: linear;
 }
 .facebook-link-to-event img{
   max-width: 40px;
   display: inline-block;
+}
+.facebook-link-to-event:hover {
+    border:1px solid black;
+    border-radius: 3px;
+    box-shadow: -2px 2px 2px #888888;
 }
 
 // Social Networking
