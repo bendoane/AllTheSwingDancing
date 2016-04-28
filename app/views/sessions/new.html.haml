@@ -1,6 +1,6 @@
-.container
+.section-header
   %h1.title-section Log in!
-  %br/
+.container
   .col-xs-6
     = bootstrap_form_for(@user_session) do |f|
       .field
@@ -10,7 +10,7 @@
       = f.submit "Sign In!"
     %br/
   .col-xs-2
-    / Omni stuff
+    / Omni Auth
     .social_network_authorize
       .social-icons
         %h4 Log in via

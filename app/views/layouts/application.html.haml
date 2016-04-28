@@ -45,13 +45,7 @@
                 %li
                   = link_to "My Events", info_my_events_path
               %li
-                = link_to "Add Event", new_event_path
-            %li
-              = link_to "About", info_about_path
-            /
-              <li>
-              <haml_loud>link_to &quot;Contact&quot;, info_contact_path</haml_loud>
-              </li>
+                = link_to "Add Event", new_event_path 
             - unless current_user
               %li
                 = link_to "Login", new_session_path

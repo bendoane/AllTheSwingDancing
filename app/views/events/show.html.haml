@@ -73,18 +73,19 @@
       .external-event-site-button
         = button_to "#{@event.name} website", @event.url, :target => "_blank", class: "btn btn-standard btn-lg"
 
-  %hr
+  %br
     / Resposive maps via GOOGLE
+  .section-header
     %h3.title-section Event Location Map
-    %div{:style => "width: 400px;"}
-      #map{:style => "width: 950px; height: 400px;"}
-    :javascript
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(#{raw @hash.to_json});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(14);
-      });
-    / END
-    = render partial: "regional_events"
+  %div{:style => "width: 400px;"}
+    #map{:style => "width: 950px; height: 400px;"}
+  :javascript
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(14);
+    });
+  / END
+= render partial: "regional_events"
