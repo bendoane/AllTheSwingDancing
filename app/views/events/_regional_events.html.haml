@@ -1,7 +1,7 @@
-/ Geocoding Nearby Locationa
-%hr
-  - if @event.location.nearbys(200)
+- if @event.location.nearbys(200)
+  .section-header
     %h3.title-section Other Regional Events
+  .container
     %ul
     - @event.location.nearbys(200).take(6).each do |single_event|
       #event-tabs.col-xs-2
