@@ -33,7 +33,7 @@
           %a#web-app-title.navbar-brand{:href => root_url} All the Swing Dancing
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav.navbar-right
+          %ul.nav.navbar-nav.navbar-right.navtabs
             - unless current_user
               %li
                 = link_to "Sign Up!", new_user_path
@@ -43,15 +43,15 @@
                   = link_to "All Events", root_url
               - else
                 %li
-                  = link_to "My Events", info_my_events_path
+                  = link_to "My Events ✰", info_my_events_path
               %li
-                = link_to "Add Event", new_event_path 
+                = link_to "Add Event +", new_event_path
             - unless current_user
               %li
                 = link_to "Login", new_session_path
             - if current_user
               %li
-                = link_to "Log Out", session_path(@current_user), method: :delete
+                = link_to "Log Out ➭", session_path(@current_user), method: :delete
         / /.navbar-collapse
       / /.container
     / Facebook login stuffs
@@ -121,6 +121,14 @@
     %br/
     %br/
     %footer
+      .bottom-infobar
+        .container
+          .col-xs-3.advertising-space
+            This is for adverts
+          .col-xs-6.advertising-space
+            This is for adverts
+          .col-xs-3.advertising-space
+            This is for adverts
       %nav#footer.navbar.navbar-default.navbar-fixed-bottom
         AllTheSwingDancing™ ©2016 by
         %a{:href => "https://www.linkedin.com/in/ben-doane-b9040348"} Ben Doane

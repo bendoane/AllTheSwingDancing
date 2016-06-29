@@ -32,10 +32,15 @@
  /* Footer Styles */
 
  footer {
-     margin: 50px 0;
+     margin: 0 0 0 0;
      text-align: center;
      align-items: center;
      clear:both;
+ }
+ .bottom-infobar{
+  background-color: #262626;
+  min-height: 200px;
+  color: white;
  }
  #footer{
    border-top: 5px;
@@ -54,6 +59,10 @@
 .title-with-icon{
   display: inline-block;
   margin-top: 8px;
+}
+.navtabs{
+  font-size: 22px;
+  font-weight: 600;
 }
 // Page general info
 #title-image {
@@ -136,7 +145,8 @@ input[type=submit]:hover {
 .advertising-space{
   border: solid #cccccc 1px;
   border-radius: 5px;
-  min-height: 300px;
+  max-height: 300px;
+  min-height: 125px;
   margin: 10px 0 10px 0;
 }
 // Page Panel info
