@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @events = @events.search(params[:search]).paginate(:page => params[:page], :per_page => 8)
       if @events.size.zero?
         flash[:notice]="No match was found."
-        redirect_to root_url
+
       end
     @mapevents = Event.all
     @hash = Gmaps4rails.build_markers(@mapevents) do |event, marker|

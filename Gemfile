@@ -20,7 +20,7 @@ gem 'erb2haml', :group => :development
 gem 'will_paginate', '~> 3.0.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets
